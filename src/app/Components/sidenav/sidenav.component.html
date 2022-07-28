@@ -1,0 +1,31 @@
+<mat-nav-list>
+  <div class="logo py-4">
+    <img src="./assets/logo.png" alt="Company Logo" />
+  </div>
+  <mat-divider></mat-divider>
+  
+  <br>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+    <mat-icon>home</mat-icon> Home
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+    <mat-icon>dashboard</mat-icon> Dashboard
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/calender">
+       <mat-icon>date_range</mat-icon> Calender
+       </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/timesheet">
+       <mat-icon>watch_later</mat-icon> Time Sheet </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/tache"> 
+      <mat-icon>work_history</mat-icon>Tache</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/gestion-projet">
+     <mat-icon>supervised_user_circle</mat-icon>Projet 
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/gestion-user">
+      <mat-icon>supervised_user_circle</mat-icon>Gestion User
+     </a>
+
+  <a   mat-list-item style="margin-bottom: 0;"   > <mat-icon>settings</mat-icon>Setting </a>
+</mat-nav-list>

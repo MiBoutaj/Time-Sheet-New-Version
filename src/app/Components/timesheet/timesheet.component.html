@@ -1,0 +1,92 @@
+<p-toast position="top-right"></p-toast>
+<div class="container-fluid page">
+    <h1>Project</h1>
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row widgets">
+
+
+                <div class="col-lg-5 control-section" style="margin-bottom: 25px; width: 500px;">
+                    <div class="content-wrapper" style="margin-bottom: 25px;">
+                        <div class="formtitle">
+                            <span>Add TimeSheet Details</span>
+                        </div>
+
+                        <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal"
+                            novalidate="">
+
+                            <div class="form-group">
+                                <div class="e-float-input">
+                                    <input id="check" type="text" formControlName="check">
+                                    <span class="e-float-line"></span>
+                                    <label for="check" class="e-float-text">User Name</label>
+                                </div>
+                                <div *ngIf="check.errors">
+                                    <div *ngIf="check.errors.required && check.touched" class="e-error">
+                                        This field is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="e-float-input">
+                                    <textarea rows="4" id="Address" name="Address" formControlName="Address"></textarea>
+                                    <span class="e-float-line"></span>
+                                    <label class="e-float-text" for="address">Comment</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="e-float-input">
+                                    <input type="number" name="number" min="0" max="10" step="1" value="4">
+                                    <span class="e-float-line"></span>
+                                    <label class="e-float-text" for="address">Hours</label>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-md-center">
+                                <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
+                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789;" (click)="addSingle()">Add
+                                    TimeSheet</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-lg-7">
+
+                    <div class="card small">
+                        <p-table [value]="products" styleClass="p-datatable-sm" responsiveLayout="scroll"
+                            aria-readonly="true" class="text-center">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Comment</th>
+                                    <th>Hours</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <td>{{product.code}}</td>
+                                    <td>Amine Aboutaj</td>
+                                    <td >-</td>
+                                    <td >{{product.quantity}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>

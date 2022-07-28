@@ -1,0 +1,84 @@
+:host ::ng-deep .p-rowgroup-footer td {
+    font-weight: 700;
+}
+
+:host ::ng-deep .p-rowgroup-header {
+    span {
+        font-weight: 700;
+    }
+
+    .p-row-toggler {
+        vertical-align: middle;
+        margin-right: .25rem;
+    }
+}
+
+
+
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding: 2em;
+    font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+  }
+  .div .small{
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+  }
+  th{
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+
+  }
+  td{
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+  }
+
+
+  //les badge
+  .projet-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+
+    &.projet-todo {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+
+    &.projet-inprogress {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+
+    &.projet-done {
+        background: #B3E5FC;
+        color: #23547B;
+    }
+
+}
+
+.true-icon{
+    &.pi-check-circle{
+        color: #017001;
+    }
+}
+
+.false-icon{
+    &.pi-times-circle{
+        color: #a81d02;
+    }
+}
+
+
+
+

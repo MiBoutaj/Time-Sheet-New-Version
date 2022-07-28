@@ -1,0 +1,59 @@
+<div class="container-fluid page">
+    <h1>Project Task</h1>
+    <div class="card">
+        <div class="card-body">
+
+
+
+            <div class="card small">
+                <p-table [value]="customers" rowGroupMode="rowspan" groupRowsBy="representative.name"
+                    sortField="representative.name" sortMode="single" responsiveLayout="scroll"
+                    styleClass="p-datatable-sm">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:3rem">#</th>
+                            <th>Representative</th>
+                            <th>Task</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Date</th>
+
+                            <th style="width: 6rem">
+                                <div class="text-center">Verified</div>
+                                
+                               </th>
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex" let-rowgroup="rowgroup"
+                        let-rowspan="rowspan">
+                        <tr>
+                            <td>{{rowIndex}}</td>
+                            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+                                <img [alt]="customer.representative.name" src="assets/user.png" width="32"
+                                    style="vertical-align: middle" />
+                                <span class="font-bold ml-2">{{customer.representative.name}}</span>
+                            </td>
+                            <td>
+                                {{customer.name}}
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                <span [class]="'projet-badge projet-' + customer.status">{{customer.status}}</span>
+                            </td>
+                            <td>
+                                {{customer.date}}
+                            </td>
+                            <td class="text-center">
+                                <i class="pi"
+                                    [ngClass]="{'true-icon pi-check-circle': customer.verified, 'false-icon pi-times-circle': !customer.verified}"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

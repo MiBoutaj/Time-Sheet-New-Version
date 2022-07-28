@@ -1,0 +1,41 @@
+* {
+    font-family: "Montserrat", sans-serif;
+
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding: 2em;
+    font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+  }
+
+
+.e-kanban .e-card-footer-css {
+    align-self: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+}
+
+
+.e-kanban .e-nancy-davloio, .e-kanban .e-andrew-fuller, .e-kanban .e-janet-leverling,
+.e-kanban .e-steven-walker, .e-kanban .e-michael-suyama, .e-kanban .e-robert-king, .e-kanban .e-margaret-hamilt  {
+    border-radius: 72px;
+    height: 24px;
+    width: 24px;
+}
+.fluent-dark .e-kanban .e-kanban-table.e-content-table .e-card .e-card-tag.e-card-label,
+.bootstrap-dark .e-kanban .e-kanban-table.e-content-table .e-card .e-card-tag.e-card-label,
+.highcontrast .e-kanban .e-kanban-table.e-content-table .e-card .e-card-tag.e-card-label,
+.fabric-dark .e-kanban .e-kanban-table.e-content-table .e-card .e-card-tag.e-card-label,
+.material-dark .e-kanban .e-kanban-table.e-content-table .e-card .e-card-tag.e-card-label{
+    background: #4b5563;
+    color: #fff;
+}
