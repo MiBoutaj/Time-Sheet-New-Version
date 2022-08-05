@@ -1,7 +1,7 @@
 
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { CalenderComponent } from './Components/calender/calender.component';
 import { TimesheetComponent } from './Components/timesheet/timesheet.component';
@@ -10,19 +10,31 @@ import { GestionProjetComponent } from './Components/gestion-projet/gestion-proj
 import { ProjetTacheComponent } from './Components/projet-tache/projet-tache.component';
 import { TacheComponent } from './Components/tache/tache.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { LoginComponent } from './Components/login/login.component';
+import { ForbiddenComponent } from './Forbidden/forbidden/forbidden.component';
+import { IsAuthGuard } from './guard/is-auth.guard';
 
 
 
 const routes: Routes = [
-  {path:'dashboard',component:DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'calender', component: CalenderComponent },
+  { path: 'tache', component: TacheComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'timesheet', component: TimesheetComponent },
+  { path: 'app-forbidden', component: ForbiddenComponent },
+  //pour gestion de projet
   { path: 'gestion-projet', component: GestionProjetComponent },
-  {path:'projet-tache',component:ProjetTacheComponent},
+  { path: 'projet-tache/:id_Project', component: ProjetTacheComponent },
+
+  //pour gestion de users
   { path: 'gestion-user', component: GestionUserComponent },
-  {path:'timesheet',component:TimesheetComponent},
-  {path:'calender',component:CalenderComponent},
-  {path:'tache',component:TacheComponent},
-  {path:'',redirectTo:'calender',pathMatch:'full'}
- 
+
+
+
+
+  { path: '', redirectTo: 'calender', pathMatch: 'full' }
+
 
 ];
 
@@ -36,7 +48,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
 
 }
 

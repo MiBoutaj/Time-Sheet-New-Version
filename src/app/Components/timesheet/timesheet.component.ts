@@ -1,50 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Product } from './product';
-import { ProductService } from './productservice';
-import { FormControl, FormGroup,Validators, FormsModule, AbstractControl } from '@angular/forms';
-import {MessageService} from 'primeng/api';
+
+import { FormControl, FormGroup, Validators, FormsModule, AbstractControl } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { TimeSheet } from 'src/app/model/TimeSheet.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { TimesheetService } from 'src/app/services/timesheet.service';
 
 @Component({
   selector: 'app-timesheet',
   templateUrl: './timesheet.component.html',
   styleUrls: ['./timesheet.component.scss'],
-  providers : [ProductService,MessageService]
+  providers: [MessageService,TimesheetService]
 })
 export class TimesheetComponent implements OnInit {
-  products: Product[] | any;
   reactForm: FormGroup;
+  timesheets: TimeSheet[] | any;
+  timesheet : TimeSheet = new TimeSheet();
+  
 
-  constructor(private productService: ProductService , private http : HttpClient , private messageService: MessageService) { 
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService,
+    private timesheetService : TimesheetService,
+    private authService : AuthService
+  ) {
+
+    this.timesheet.date =new Date();
+    this.timesheet.username= this.authService.loggedUser;
+    
+
     this.reactForm = new FormGroup({
-      'check': new FormControl('', [Validators.required]),
-      'email_check': new FormControl('', [Validators.email]),
-      'date_check': new FormControl('', [Validators.required]),
-      'city': new FormControl('', [Validators.required]),
-      'state': new FormControl('', [Validators.required]),
-      'Address':new FormControl(''),
+      'hours': new FormControl('', [Validators.required])
     });
   }
 
   ngOnInit(): void {
-    this.productService.getProductsSmall().then(data => this.products = data);
-
-    let formId: HTMLElement = <HTMLElement>document.getElementById('formId');
-    document.getElementById('formId').addEventListener(
-      'submit',
-      (e: Event) => {
-        e.preventDefault();
-        if (this.reactForm.valid) {
-          alert('Customer details added!');
-          this.reactForm.reset();
-        } else {
-          // validating whole form
-          Object.keys(this.reactForm.controls).forEach(field => {
-            const control = this.reactForm.get(field);
-            control.markAsTouched({ onlySelf: true });
-          });
-        }
-      });
+    this.timesheetService.getAllTimeSheet().subscribe(data=> this.timesheets = data)
   }
 
   get check() { return this.reactForm.get('check'); }
@@ -55,8 +47,22 @@ export class TimesheetComponent implements OnInit {
   get Address() { return this.reactForm.get('Address'); }
 
 
-  addSingle() {
-    this.messageService.add({severity:'success', summary:'Service Message', detail:'TimeSheet is added'});
-}
+  addTimeSheet() {
+
+    console.log(this.timesheet);
+
+    this.timesheetService.addTimeSheet(this.timesheet).subscribe(
+      suc => {
+        this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'TimeSheet is added' });
+        this.ngOnInit();
+    },
+    err => {
+      this.messageService.add({ severity: 'error', summary: 'Service Message', detail: 'TimeSheet is added' });
+    }
+    );
+
+
+
+  }
 
 }

@@ -26,7 +26,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
-
+import {ToolbarModule} from 'primeng/toolbar';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 
@@ -46,10 +47,17 @@ import { TacheComponent } from './Components/tache/tache.component';
 import { GestionUserComponent } from './Components/gestion-user/gestion-user.component';
 import { GestionProjetComponent } from './Components/gestion-projet/gestion-projet.component';
 import { ProjetTacheComponent } from './Components/projet-tache/projet-tache.component';
+import {StepsModule} from 'primeng/steps';
+import {ListboxModule} from 'primeng/listbox';
+import {SplitterModule} from 'primeng/splitter';
+
 
 
 
 import { KanbanModule } from '@syncfusion/ej2-angular-kanban';
+import { ForbiddenComponent } from './Forbidden/forbidden/forbidden.component';
+import { AddProjetComponent } from './Components/add-projet/add-projet.component';
+import { ProjetModificationComponent } from './Components/projet-modification/projet-modification.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -70,6 +78,9 @@ FullCalendarModule.registerPlugins([
     GestionUserComponent,
     GestionProjetComponent,
     ProjetTacheComponent,
+    ForbiddenComponent,
+    AddProjetComponent,
+    ProjetModificationComponent,
 
 
 
@@ -94,8 +105,11 @@ FullCalendarModule.registerPlugins([
     ToastModule,
     ReactiveFormsModule,
     CardModule,
-
-
+    StepsModule,
+   ToolbarModule,
+   ListboxModule,
+   ConfirmDialogModule,
+   SplitterModule,
 
     KanbanModule
 

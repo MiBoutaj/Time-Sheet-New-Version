@@ -1,7 +1,74 @@
 <div class="container-fluid page">
-    <h1>Project Task</h1>
+    <h1>Project details</h1>
     <div class="card">
         <div class="card-body">
+
+            <p-splitter [style]="{'height': '300px'}" [panelSizes]="[20,80]" [minSizes]="[10,0]" styleClass="mb-5">
+                <ng-template pTemplate>
+                    <p-splitter layout="vertical" [panelSizes]="[15,85]">
+                        <ng-template pTemplate>
+                            <div class="col flex align-items-center justify-content-center">
+                                <h3>{{project.name}}</h3>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate>
+                            <p-splitter [panelSizes]="[50,80]">
+                                <ng-template pTemplate>
+
+
+                                    <div class="card small" style="width:300px;border: none;">
+                                        <p-table styleClass="p-datatable-sm" responsiveLayout="scroll"
+                                            aria-readonly="true" class="text-center">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <td>
+                                                        <h6> Client</h6>
+                                                    </td>
+                                                    <td>{{project.client}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h6> Duration</h6>
+                                                    </td>
+                                                    <td>{{project.duration}} j</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h6> Description</h6>
+                                                    </td>
+                                                    <td>{{project.description}}</td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+
+
+
+                                </ng-template>
+                                <ng-template pTemplate>
+                                    <div class="col flex align-items-center justify-content-center">
+                                        <p-chart type="doughnut" [data]="data" [options]="chartOptions"
+                                            [style]="{'width': '35%'}"></p-chart>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate>
+                                    <div class="col flex align-items-center justify-content-center">
+                                        <div class="row">
+                                            <div class="text-center">
+                                                <p>Modify the project : </p>
+                                            </div>
+                                            <div class="text-center">
+                                                <button pButton type="button" label="Modify"
+                                                    class="p-button-secondary"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-splitter>
+                        </ng-template>
+                    </p-splitter>
+                </ng-template>
+            </p-splitter>
 
 
 
@@ -20,8 +87,8 @@
 
                             <th style="width: 6rem">
                                 <div class="text-center">Verified</div>
-                                
-                               </th>
+
+                            </th>
 
                         </tr>
                     </ng-template>

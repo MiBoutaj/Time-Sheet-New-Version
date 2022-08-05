@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-8 control-section" style="margin-bottom: 25px; width: 500px;">
+            <div class="content-wrapper" style="margin-bottom: 25px; width: 500px;">
+
+                <div class="logo py-4">
+                    <img src="./assets/logo.png" alt="Company Logo" />
+                </div>
+
+
+                <form id="formId" class="form-horizontal">
+
+                    <div class="alert alert-danger" *ngIf="erreur==1">
+                        <strong>login ou mot de passe erronés..</strong>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="e-float-input">
+                            <input type="text" name="username" class="form-control" [(ngModel)]="user.username">
+                            <span class="e-float-line"></span>
+                            <label for="check" class="e-float-text">User Name</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="e-float-input">
+                            <input type="password" name="password"  class="form-control" [(ngModel)]="user.password">
+                            <span class="e-float-line"></span>
+                            <label for="check" class="e-float-text">Password</label>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                            <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
+                                style="height:40px;width: 150px; color: #4a9ad7;border: #868789;"
+                                (click)="onLoggedin()">Connexion</button>
+
+
+                     
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

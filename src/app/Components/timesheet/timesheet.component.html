@@ -18,37 +18,31 @@
 
                             <div class="form-group">
                                 <div class="e-float-input">
-                                    <input id="check" type="text" formControlName="check">
+                            
                                     <span class="e-float-line"></span>
-                                    <label for="check" class="e-float-text">User Name</label>
-                                </div>
-                                <div *ngIf="check.errors">
-                                    <div *ngIf="check.errors.required && check.touched" class="e-error">
-                                        This field is required.
-                                    </div>
+                                    <label for="user" class="e-float-text">{{timesheet.username}}</label>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="e-float-input">
-                                    <textarea rows="4" id="Address" name="Address" formControlName="Address"></textarea>
                                     <span class="e-float-line"></span>
-                                    <label class="e-float-text" for="address">Comment</label>
+                                    <label for="date_check" class="e-float-text">{{timesheet.date| date: 'M/d/yy, h:mm a'}}</label>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top:20px;">
                                 <div class="e-float-input">
-                                    <input type="number" name="number" min="0" max="10" step="1" value="4">
+                                    <input id="hours" formControlName="hours"  type="number" min="0" max="10" name="number" step="1" value="4" [(ngModel)]="timesheet.workingHours">
                                     <span class="e-float-line"></span>
                                     <label class="e-float-text" for="address">Hours</label>
                                 </div>
                             </div>
 
+
                             <div class="row justify-content-md-center">
                                 <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789;" (click)="addSingle()">Add
-                                    TimeSheet</button>
+                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789;" (click)="addTimeSheet()">Add TimeSheet</button>
                             </div>
 
                         </form>
@@ -62,22 +56,26 @@
                 <div class="col-lg-7">
 
                     <div class="card small">
-                        <p-table [value]="products" styleClass="p-datatable-sm" responsiveLayout="scroll"
-                            aria-readonly="true" class="text-center">
+                        <p-table [value]="timesheets" [paginator]="true" [rows]="10"
+                        [showCurrentPageReport]="true" responsiveLayout="scroll"
+                         [rowsPerPageOptions]="[10,25,50]"
+                         styleClass="p-datatable-sm" responsiveLayout="scroll"
+                            aria-readonly="true" class="text-center"
+                            >
                             <ng-template pTemplate="header">
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Comment</th>
-                                    <th>Hours</th>
+                                    <th class="text-center">Code</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Hours</th>
                                 </tr>
                             </ng-template>
-                            <ng-template pTemplate="body" let-product>
+                            <ng-template pTemplate="body" let-ts>
                                 <tr>
-                                    <td>{{product.code}}</td>
-                                    <td>Amine Aboutaj</td>
-                                    <td >-</td>
-                                    <td >{{product.quantity}}</td>
+                                    <td class="text-center">{{ts.id}}</td>
+                                    <td class="text-center">{{ts.username}}</td>
+                                    <td class="text-center" >{{ts.date | date: 'd/MM/yy, h:mm a'}}</td>
+                                    <td class="text-center">{{ts.workingHours}}</td>
                                 </tr>
                             </ng-template>
                         </p-table>

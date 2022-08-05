@@ -1,51 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'TimeSheet';
 
   sideBarOpen = true;
+  visible : number =1
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
+  constructor(public authService: AuthService,
+    private router: Router
+  ) {
 
+  }
 
+  ngOnInit(): void {
+   this.authService.loadToken();
+   if(this.authService.getToken() == null || this.authService.isTokenExpired() || !this.authService.isloggedIn){
+    this.router.navigate(['/login'])
+   }
 
-
-  data: any;
-    
-  constructor() {
-      this.data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [
-              {
-                  label: 'First Dataset',
-                  data: [65, 59, 80, 81, 56, 55, 40],
-                  borderColor: '#0000FF',
-                  fill: true,
-                  tension: .3
-              },
-              {
-                  label: 'Second Dataset',
-                  data: [28, 48, 40, 19, 86, 27, 90],
-                  borderColor: '#FFFF33',
-                  fill: true,
-                  tension: .3
-              },
-              {
-                label: 'tree Dataset',
-                data: [28, 49, 41, 11, 83, 27, 80],
-                borderColor: '#FF1800',
-                fill: true,
-                tension: .3
-            }
-          ]
-      }
   }
 
 }

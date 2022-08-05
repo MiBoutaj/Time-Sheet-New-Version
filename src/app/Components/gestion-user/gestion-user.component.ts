@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MessageService} from 'primeng/api';
+import {MenuItem} from 'primeng/api';
+import { Employee } from 'src/app/model/Employee.model';
 
 
 @Component({
@@ -13,8 +15,9 @@ export class GestionUserComponent implements OnInit {
 
 
   reactForm: FormGroup;
-
-
+  activeIndex: number = 0;
+  items: MenuItem[];
+  employee = new Employee();
 
 
   constructor(private messageService: MessageService) { 
@@ -29,6 +32,36 @@ export class GestionUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.items = [{
+      label: 'Personal',
+      command: (event: any) => {
+          this.activeIndex = 0;
+          this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
+      }
+  },
+  {
+      label: 'Role',
+      command: (event: any) => {
+          this.activeIndex = 1;
+          this.messageService.add({severity:'info', summary:'Seat Selection', detail: event.item.label});
+      }
+  },
+  {
+      label: 'Login & Password',
+      command: (event: any) => {
+          this.activeIndex = 2;
+          this.messageService.add({severity:'info', summary:'Pay with CC', detail: event.item.label});
+      }
+  },
+  {
+      label: 'Confirmation',
+      command: (event: any) => {
+          this.activeIndex = 3;
+          this.messageService.add({severity:'info', summary:'Last Step', detail: event.item.label});
+      }
+  }
+];
 
     let formId: HTMLElement = <HTMLElement>document.getElementById('formId');
     document.getElementById('formId').addEventListener(
@@ -49,7 +82,15 @@ export class GestionUserComponent implements OnInit {
   }
 
   addSingle() {
+    this.activeIndex= this.activeIndex+1;
     this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+}
+
+Next(){
+  this.activeIndex= this.activeIndex+1;
+}
+Back(){
+  this.activeIndex= this.activeIndex-1;
 }
 
 
@@ -59,5 +100,12 @@ get date_check() { return this.reactForm.get('date_check'); }
 get city() { return this.reactForm.get('city'); }
 get state() { return this.reactForm.get('state'); }
 get Address() { return this.reactForm.get('Address'); }
+
+
+AddInfoEmployee(){
+  
+}
+
+
 
 }
