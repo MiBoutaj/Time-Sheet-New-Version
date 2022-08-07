@@ -13,6 +13,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ForbiddenComponent } from './Forbidden/forbidden/forbidden.component';
 import { IsAuthGuard } from './guard/is-auth.guard';
+import { ProjetModificationComponent } from './Components/projet-modification/projet-modification.component';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   //pour gestion de projet
   { path: 'gestion-projet', component: GestionProjetComponent },
   { path: 'projet-tache/:id_Project', component: ProjetTacheComponent },
+  { path: 'projet-modification/:id_Project', component: ProjetModificationComponent},
 
   //pour gestion de users
   { path: 'gestion-user', component: GestionUserComponent },

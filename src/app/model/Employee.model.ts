@@ -1,6 +1,7 @@
 import { Role } from "./Role.mode";
 
 export class Employee {
+    employee_id: number;
     username: string
     firstName: string;
     lastName: string;

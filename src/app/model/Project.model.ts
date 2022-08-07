@@ -1,3 +1,5 @@
+import { ManagerProject } from "./ManagerProject.model";
+
 export class Project {
 
     id_Project: number;
@@ -5,6 +7,6 @@ export class Project {
     description: string;
     duration: number;
     client: string;
-    administrateur: string;
+    managerProject: ManagerProject;
 
 }

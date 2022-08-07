@@ -28,6 +28,7 @@ import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -58,6 +59,12 @@ import { KanbanModule } from '@syncfusion/ej2-angular-kanban';
 import { ForbiddenComponent } from './Forbidden/forbidden/forbidden.component';
 import { AddProjetComponent } from './Components/add-projet/add-projet.component';
 import { ProjetModificationComponent } from './Components/projet-modification/projet-modification.component';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { GridModule } from '@syncfusion/ej2-angular-grids';
+import { GridAllModule } from '@syncfusion/ej2-angular-grids';
+import { TabAllModule } from '@syncfusion/ej2-angular-navigations';
+
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -110,8 +117,14 @@ FullCalendarModule.registerPlugins([
    ListboxModule,
    ConfirmDialogModule,
    SplitterModule,
+   DropdownModule,
 
-    KanbanModule
+    KanbanModule,
+    DropDownListModule,
+    MultiSelectAllModule,
+    GridModule,
+    GridAllModule,
+    TabAllModule
 
   ],
   providers: [EventService],

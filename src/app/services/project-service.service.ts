@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from '../model/Project.model';
@@ -9,41 +9,58 @@ import { ProjectDTO } from '../model/ProjectDTO.model';
 })
 export class ProjectServiceService {
 
-  
+
   private baseUrl = "http://localhost:8084"
 
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  addProjectDTo(pr : ProjectDTO):Observable<Project>{
-    return this.http.post<ProjectDTO>(this.baseUrl+"/add",pr);
+  addProjectDTo(pr: ProjectDTO): Observable<ProjectDTO> {
+    return this.http.post<ProjectDTO>(this.baseUrl + "/add", pr);
   }
 
 
-  listProject():Observable<Project[]>{
-    return this.http.get<Project[]>(this.baseUrl+"/findAll")
+  listProject(): Observable<Project[]> {
+    return this.http.get<Project[]>(this.baseUrl + "/findAll")
   }
 
-  deleteProject(id : number){
+  deleteProject(id: number) {
     console.log(id)
-  this.http.delete<number>(this.baseUrl+"/delete/"+id).subscribe(
-    suc => {
-      console.log("alllerr")
+    this.http.delete<number>(this.baseUrl + "/delete/" + id).subscribe(
+      suc => {
+        console.log("alllerr")
 
-      
-  },
-  err => {
-   console.log(err);
+
+      },
+      err => {
+        console.log(err);
+
+      }
+    );
+
 
   }
-  );
 
 
+  findProjectById(id: string): Observable<Project> {
+    return this.http.get<Project>(this.baseUrl + "/findById/" + id)
   }
+  addEmployeeListToProject(id: string, ids: number[]) {
+    let params = new HttpParams().set("params", ids.toString());
 
 
-  findProjectById(id: string):Observable<Project>{
-    return this.http.get<Project>(this.baseUrl+"/findById/"+id)
+    console.log(ids.toString)
+    return this.http.post(this.baseUrl + "/addEmployeeListToProject/" + id ,{}, {'params': params}).subscribe(
+      suc => {
+        console.log("alllerr")
+
+
+      },
+      err => {
+        console.log(err);
+
+      }
+    );
   }
 
 

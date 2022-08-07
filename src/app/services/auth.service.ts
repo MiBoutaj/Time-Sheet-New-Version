@@ -19,6 +19,7 @@ export class AuthService {
   employee = new Employee()
 
   public loggedUser !: string;
+  public loggedUserId !: number;
   public isloggedIn: Boolean = false;
   public roles !: Role[];
 
@@ -50,6 +51,9 @@ export class AuthService {
     const decodeToken = this.helper.decodeToken(this.token);
     this.roles = decodeToken.roles;
     this.loggedUser = decodeToken.sub;
+     this.findEmplyeeByUserName(this.loggedUser).subscribe(data=>this.employee = data);
+
+
   }
 
 
@@ -119,6 +123,17 @@ export class AuthService {
 
 
   */
+
+
+  findListEmplyeeByRole(role :string):Observable<Employee[]>{
+    return this.http.get<Employee[]>(this.apiURL+"/find/listEmployeeByRole/"+role);
+  }
+
+  findEmplyeeByUserName(username :string):Observable<Employee>{
+    return this.http.get<Employee>(this.apiURL+"/find/"+username);
+  }
+
+
 
 
 

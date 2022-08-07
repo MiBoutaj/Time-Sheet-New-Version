@@ -6,6 +6,9 @@ import { Message, MessageService } from 'primeng/api';
 import { Project } from 'src/app/model/Project.model';
 import { ConfirmationService } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
+import { Employee } from 'src/app/model/Employee.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
 
 
 @Component({
@@ -22,12 +25,22 @@ export class GestionProjetComponent implements OnInit {
   msgs: Message[] = [];
   projectDTO = new ProjectDTO();
   projectList: Project[];
+  emplyeeList: Employee[];
+
+
+
+  waterMark: string = 'Select a Manager';
+  height: string = '220px';
+  fields: Object = { text: 'lastName', value: 'employee_id' };
+  listObj: DropDownListComponent;
+ value: string = null;
 
 
   constructor(private messageService: MessageService,
     private projectService: ProjectServiceService,
     private confirmationService: ConfirmationService,
-    private primengConfig: PrimeNGConfig) {
+    private primengConfig: PrimeNGConfig,
+    private authService: AuthService) {
 
     this.reactForm = new FormGroup({
       'check': new FormControl('', [Validators.required]),
@@ -40,9 +53,11 @@ export class GestionProjetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
 
     this.primengConfig.ripple = true;
     this.projectService.listProject().subscribe(data => this.projectList = data);
+    this.authService.findListEmplyeeByRole("MANAGER").subscribe(data => { this.emplyeeList = data });
 
     let formId: HTMLElement = <HTMLElement>document.getElementById('formId');
     document.getElementById('formId').addEventListener(
@@ -82,12 +97,14 @@ export class GestionProjetComponent implements OnInit {
 
     this.projectService.addProjectDTo(this.projectDTO).subscribe(
       suc => {
+   
         this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Project is added' });
         this.Close();
         this.projectDTO = new ProjectDTO();
         this.ngOnInit();
       },
       err => {
+        console.log(this.projectDTO)
         this.messageService.add({ severity: 'error', summary: 'Service Message', detail: 'Erreur' });
       }
     );
@@ -97,16 +114,23 @@ export class GestionProjetComponent implements OnInit {
 
   confirm(id: number) {
     this.confirmationService.confirm({
-        message: 'Are you sure that you want delete project?',
-        accept: () => {
-          this.projectService.deleteProject(id);
-          this.ngOnInit();
-          this.msgs = [{ severity:'info', summary:'Confirmed', detail:'Project deleted'}];
-        },
-        reject: () => {
-            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-        }
+      message: 'Are you sure that you want delete project?',
+      accept: () => {
+        this.projectService.deleteProject(id);
+        this.ngOnInit();
+        this.msgs = [{ severity: 'info', summary: 'Confirmed', detail: 'Project deleted' }];
+      },
+      reject: () => {
+        this.msgs = [{ severity: 'info', summary: 'Rejected', detail: 'You have rejected' }];
+      }
     });
-}
+  }
+
+  public onChange(args: any): void {
+ 
+
+
+
+  }
 
 }

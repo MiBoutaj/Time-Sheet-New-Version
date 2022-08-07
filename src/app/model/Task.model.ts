@@ -1,8 +1,8 @@
 export class Task{
 
-    id_tache : string;
-    nom : string;
+    id_Task : number;
+    name : string;
     status : string;
     description : string;
-    dure : number;
+    duration : number;
 }

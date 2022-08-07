@@ -1,3 +1,5 @@
+import { ManagerProject } from "./ManagerProject.model";
+
 export class ProjectDTO {
 
     id_Project: number;
@@ -5,6 +7,6 @@ export class ProjectDTO {
     description: string;
     duration: number;
     client: string;
-    administrateur: string;
+
 
 }
