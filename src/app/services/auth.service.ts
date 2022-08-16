@@ -12,7 +12,7 @@ import { User } from '../model/User.mode';
 })
 export class AuthService {
 
-  apiURL: string = 'http://localhost:8082/users';
+  apiURL: string = 'http://localhost:8084/users';
   token: string;
   private helper = new JwtHelperService();
 
@@ -21,7 +21,7 @@ export class AuthService {
   public loggedUser !: string;
   public loggedUserId !: number;
   public isloggedIn: Boolean = false;
-  public roles !: Role[];
+  public roles !: string[];
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -60,16 +60,10 @@ export class AuthService {
 
   isAdministrateur(): Boolean {
 
-    let admin: Boolean = false;
-    if (!this.roles) return false;
-
-    this.roles.forEach((curRole) => {
-      if (curRole.role == 'ADMIN') {
-        admin = true;
-
-      }
-    });
-    return admin;
+    if (!this.roles) //this.roles== undefiened
+    return false;
+    return (this.roles.indexOf('ADMIN') >-1) ;
+    ;
   }
 
 

@@ -42,7 +42,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TabViewModule } from 'primeng/tabview';
-import { EventService } from './Components/calender/eventservice';
 import { TimesheetComponent } from './Components/timesheet/timesheet.component';
 import { TacheComponent } from './Components/tache/tache.component';
 import { GestionUserComponent } from './Components/gestion-user/gestion-user.component';
@@ -64,6 +63,11 @@ import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { GridAllModule } from '@syncfusion/ej2-angular-grids';
 import { TabAllModule } from '@syncfusion/ej2-angular-navigations';
+import { AgendaService, DayService, MonthService, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
+import { KanbanAllModule } from '@syncfusion/ej2-angular-kanban';
+import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { EventModificationComponent } from './Components/event-modification/event-modification.component';
+
 
 
 FullCalendarModule.registerPlugins([
@@ -88,6 +92,7 @@ FullCalendarModule.registerPlugins([
     ForbiddenComponent,
     AddProjetComponent,
     ProjetModificationComponent,
+    EventModificationComponent,
 
 
 
@@ -124,10 +129,10 @@ FullCalendarModule.registerPlugins([
     MultiSelectAllModule,
     GridModule,
     GridAllModule,
-    TabAllModule
-
+    TabAllModule,ScheduleModule,
+    DateTimePickerModule
   ],
-  providers: [EventService],
+  providers: [AgendaService, DayService, WeekService, WorkWeekService, MonthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

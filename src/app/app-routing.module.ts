@@ -14,6 +14,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { ForbiddenComponent } from './Forbidden/forbidden/forbidden.component';
 import { IsAuthGuard } from './guard/is-auth.guard';
 import { ProjetModificationComponent } from './Components/projet-modification/projet-modification.component';
+import { EventModificationComponent } from './Components/event-modification/event-modification.component';
 
 
 
@@ -31,6 +32,8 @@ const routes: Routes = [
 
   //pour gestion de users
   { path: 'gestion-user', component: GestionUserComponent },
+ //pour gestion des event
+ { path: 'event-modification', component: EventModificationComponent },
 
 
 

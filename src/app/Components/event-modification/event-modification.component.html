@@ -1,0 +1,174 @@
+<div class="container-fluid page">
+
+
+    <p-toolbar>
+        <ng-template pTemplate="left">
+            <h4>Event </h4>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+
+        </ng-template>
+    </p-toolbar>
+
+    <div class="card" style="margin-top: 10px;">
+        <div class="card-body">
+
+
+
+
+
+            <p-toast></p-toast>
+
+            <div>
+                <div class="card small">
+                    <p-table #dt [value]="EventList" rowGroupMode="rowspan" sortMode="single" responsiveLayout="scroll"
+                        styleClass="p-datatable-sm" [rows]="10" [paginator]="true"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [showCurrentPageReport]="true">
+                        <ng-template pTemplate="caption">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                                    <h5 class="m-0">Manage Events</h5>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 justify-content-end">
+                                    <div style="float: right;">
+                                        <button class="e-btn e-outline e-success" (click)="openNew()">
+                                            Add New Event</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="id">Id<p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="name">Subject<p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="date"> Start Date<p-sortIcon field="name"></p-sortIcon>
+                                <th pSortableColumn="date"> End Date<p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-event>
+                            <tr>
+                                <td>{{event.Id}}</td>
+                                <td>{{event.Subject}}</td>
+                                <td>{{event.StartTime | date: 'dd/MM/yyyy HH:mm a'}}</td>
+                                <td>{{event.EndTime | date: 'dd/MM/yyyy HH:mm a'}}</td>
+                                <td>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-info mr-2" style="height: 25px;width: 25px;"
+                                        (click)="editProduct(event)"></button>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                        (click)="deleteProduct(event)" style="height: 25px;width: 25px"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <div class="flex align-items-center justify-content-between">
+                                In total there are {{ EventList ? EventList.length : 0 }} tasks.
+                            </div>
+                        </ng-template>
+                    </p-table>
+
+
+
+                    <p-dialog [(visible)]="eventDialog" [style]="{width: '450px'}" header="Event  Details"
+                        [modal]="true" styleClass="p-fluid">
+                        <ng-template pTemplate="content">
+                            <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal"
+                                novalidate="">
+                                <div class="form-group">
+                                    <div class="e-float-input">
+                                        <input readonly id="id_Task" type="text" formControlName="id_Task"
+                                            [(ngModel)]="event.Id">
+                                        <span class="e-float-line"></span>
+                                        <label for="check" class="e-float-text">Task Id</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="e-float-input">
+                                        <input id="nom" type="text" formControlName="nom" [(ngModel)]="event.Subject">
+                                        <span class="e-float-line"></span>
+                                        <label for="check" class="e-float-text">Subject</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="e-float-input">
+                                        <ejs-datetimepicker id="startDate" formControlName="startDate"
+                                            [placeholder]='waterMark' [(value)]="event.StartTime">
+                                        </ejs-datetimepicker>
+                                        <span class="e-float-line"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="e-float-input">
+                                        <ejs-datetimepicker id="endDate" formControlName="endDate"
+                                            [placeholder]='waterMark' [(value)]="event.EndTime"></ejs-datetimepicker>
+                                        <span class="e-float-line"></span>
+                                    </div>
+
+                                </div>
+
+                                <!-- <div class="form-group">
+                                <ejs-dropdownlist id='employees' [dataSource]='emplyeeList' [fields]='fields'
+                                    [popupHeight]='height' [placeholder]='watermark' [(value)]="ide">
+                                    <ng-template #headerTemplate>
+                                        <div class="head"> <span class="photo">Photo</span> <span
+                                                style="margin-left:17px;">Employee Info</span></div>
+                                    </ng-template>
+                                    <ng-template #itemTemplate let-data>
+                                        <div>
+                                            <img class="empImage" src="./assets/auto-complete/Employees/{{data.Eimg}}.png" alt="employee" />
+                                            <div class="multiename"> {{data.firstName}} </div>
+                                            <div class="multijob"> {{data.lastName}} </div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #valueTemplate let-data>
+                                        <div>
+                                            <img class="valueTemp" src="./assets/auto-complete/Employees/{{data.Eimg}}.png" height="26px" width="26px" alt="employee" /> 
+                                            <div class="nameTemp"> {{data.lastName}} </div>
+                                        </div>
+                                    </ng-template>
+                                </ejs-dropdownlist>
+                            </div> -->
+                            </form>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <button class="e-btn e-outline e-primary" style="width: 150px;" (click)="saveEvent()">
+                                Save
+                            </button>
+
+
+                            <button class="e-btn e-outline e-danger" style="width: 150px;" (click)="hideDialog()">
+                                Cancel
+                            </button>
+
+                        </ng-template>
+                    </p-dialog>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>

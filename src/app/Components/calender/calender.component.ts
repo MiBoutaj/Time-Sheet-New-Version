@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from './eventservice';
+import { extend } from '@syncfusion/ej2-base';
+
+import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService, AgendaService, ResizeService, DragAndDropService } from '@syncfusion/ej2-angular-schedule';
+import { Event } from 'src/app/model/Event.model';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-calender',
@@ -8,31 +12,43 @@ import { EventService } from './eventservice';
 })
 export class CalenderComponent implements OnInit {
 
-  events: any[];
+
 
   options: any;
 
   header: any;
 
-  constructor(private eventService: EventService) { }
+  constructor( private employeeServcie :  EmployeeService) { }
+  ngOnInit(): void {
+    
 
-  ngOnInit() {
-      this.eventService.getEvents().then(events => {
-          this.events = events;
-          this.options = {...this.options, ...{events: events}};
-      });
+  
 
-      this.options = {
-              initialDate : '2019-01-01',
-              headerToolbar: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'dayGridMonth,timeGridWeek,timeGridDay'
-              },
-              editable: true,
-              selectable:true,
-              selectMirror: true,
-              dayMaxEvents: true
-      };
+
   }
+// public eventData: EventSettingsModel = { dataSource: extend([], this.events , null, true) as Record<string, any>[] };
+
+ public eventData: EventSettingsModel = {
+ 
+  dataSource: this.methodeFindAllEvent()
+
 }
+
+
+methodeFindAllEvent(){
+  let events : object[];
+
+ this.employeeServcie.findAllEventEmployee().subscribe(data => {
+      events = data;
+      console.log(events)
+    })
+    return events;
+}
+
+
+
+
+
+
+}
+

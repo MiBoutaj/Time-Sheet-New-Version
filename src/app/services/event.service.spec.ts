@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BdmaSeviceService } from './bdma-sevice.service';
+import { EventService } from './event.service';
 
-describe('BdmaSeviceService', () => {
-  let service: BdmaSeviceService;
+describe('EventService', () => {
+  let service: EventService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BdmaSeviceService);
+    service = TestBed.inject(EventService);
   });
 
   it('should be created', () => {

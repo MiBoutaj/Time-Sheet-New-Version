@@ -1,7 +1,7 @@
 import { Role } from "./Role.mode";
 
 export class Employee {
-    employee_id: number;
+    id: number;
     username: string
     firstName: string;
     lastName: string;
@@ -10,5 +10,5 @@ export class Employee {
     startDate: Date;
     endDate: Date;
     photo: string;
-    roles: Role[];
+    roles: string[];
 }

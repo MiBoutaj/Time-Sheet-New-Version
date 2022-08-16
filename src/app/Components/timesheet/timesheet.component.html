@@ -20,7 +20,7 @@
                                 <div class="e-float-input">
                             
                                     <span class="e-float-line"></span>
-                                    <label for="user" class="e-float-text">{{timesheet.username}}</label>
+                                    <label for="user" class="e-float-text">{{authService.employee.firstName}} {{authService.employee.lastName}}</label>
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@
                             <ng-template pTemplate="body" let-ts>
                                 <tr>
                                     <td class="text-center">{{ts.id}}</td>
-                                    <td class="text-center">{{ts.username}}</td>
+                                    <td class="text-center">{{ts.employeeDev.firstName}} {{ts.employeeDev.lastName}}</td>
                                     <td class="text-center" >{{ts.date | date: 'd/MM/yy, h:mm a'}}</td>
                                     <td class="text-center">{{ts.workingHours}}</td>
                                 </tr>

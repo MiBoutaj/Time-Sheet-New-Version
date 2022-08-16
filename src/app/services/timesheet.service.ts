@@ -11,19 +11,19 @@ export class TimesheetService {
 
   username : string;
 
-  private baseUrl = "http://localhost:8083"
+  private baseUrl = "http://localhost:8084/users/time"
 
   constructor(private http : HttpClient,private authService : AuthService) { }
 
 
 getAllTimeSheet():Observable<TimeSheet[]>{
   this.username = this.authService.loggedUser;
-  return this.http.get<TimeSheet[]>(`${this.baseUrl}/allTimeSheet/${this.username}`);
+  return this.http.get<TimeSheet[]>(this.baseUrl+"/findAllTimeEmployeeById/"+this.authService.employee.id);
 }
 
 
 addTimeSheet(timesheet : TimeSheet){
-  return this.http.post<TimeSheet>(this.baseUrl,timesheet);
+  return this.http.post<TimeSheet>(this.baseUrl+"/addTimeToEmplyeeById/"+this.authService.employee.id,timesheet);
 }
 
 

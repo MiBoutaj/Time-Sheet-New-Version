@@ -1,7 +1,9 @@
+import { Employee } from "./Employee.model";
+
 export class TimeSheet {
     id: string;
-    username: string;
     date: Date;
     workingHours: number;
+    employeeDev : Employee;
 
 }

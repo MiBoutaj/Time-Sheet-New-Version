@@ -1,8 +1,10 @@
 
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { extend } from '@syncfusion/ej2-base';
+
 import { KanbanComponent, CardSettingsModel } from '@syncfusion/ej2-angular-kanban';
 import { kanbanData } from './data';
+import { TaskService } from 'src/app/services/task.service';
+import { Task } from 'src/app/model/Task.model';
 
 @Component({
   selector: 'app-tache',
@@ -11,19 +13,24 @@ import { kanbanData } from './data';
 })
 export class TacheComponent implements OnInit {
 
-  @ViewChild('kanbanObj') kanbanObj: KanbanComponent;
-  public kanbanData: Object[] = extend([], kanbanData, null, true) as Object[];
+
+
+  taskList: Task[];
+
+
+
   public cardSettings: CardSettingsModel = {
-      contentField: 'Summary',
-      headerField: 'Id',
-      tagsField: 'Tags',
-      grabberField: 'Color',
-      footerCssField: 'ClassName'
+    
+    contentField: 'description',
+    headerField: 'id_Task',
+ 
   };
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
+
+    this.taskService.findAllTask().subscribe(data => { this.taskList = data; console.log(this.taskList) });
   }
 
 }

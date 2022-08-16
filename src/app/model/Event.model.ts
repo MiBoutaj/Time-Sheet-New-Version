@@ -1,7 +1,9 @@
 export class Event {
 
-    id_event: number;
-    nom: string;
-    heur: Date;
+    Id: number;
+    Subject: string;
+    StartTime: Date;
+    EndTime: Date;
+
 
 }

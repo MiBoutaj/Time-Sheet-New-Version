@@ -1,15 +1,23 @@
 <div class="container-fluid page">
-    <h1>Task</h1>
-    <div class="card">
+    <p-toolbar>
+        <ng-template pTemplate="left">
+            <h4>Task Lists</h4>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+
+        </ng-template>
+    </p-toolbar>
+
+    <div class="card" style="margin-top: 10px;">
         <div class="card-body">
 
             <div class="control-section">
                 <div class="content-wrapper">
-                    <ejs-kanban #kanbanObj keyField='Status' [dataSource]='kanbanData' [cardSettings]='cardSettings'>
+                    <ejs-kanban #kanbanObj keyField='status' [dataSource]='taskList' [cardSettings]='cardSettings'>
                         <e-columns>
-                            <e-column headerText='To Do' keyField='Open'></e-column>
+                            <e-column headerText='To Do' keyField='Open' footerCssField='e-bug' grabberField='#E64A19'></e-column>
                             <e-column headerText='In Progress' keyField='InProgress'></e-column>
-                            <e-column headerText='Testing' keyField='Testing'></e-column>
                             <e-column headerText='Done' keyField='Close'></e-column>
                         </e-columns>
                     </ejs-kanban>

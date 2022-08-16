@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, Validators, FormsModule, AbstractControl } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { Employee } from 'src/app/model/Employee.model';
 import { TimeSheet } from 'src/app/model/TimeSheet.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { TimesheetService } from 'src/app/services/timesheet.service';
@@ -17,17 +18,18 @@ export class TimesheetComponent implements OnInit {
   reactForm: FormGroup;
   timesheets: TimeSheet[] | any;
   timesheet : TimeSheet = new TimeSheet();
+  employee = new Employee() ;
   
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private timesheetService : TimesheetService,
-    private authService : AuthService
+    public authService : AuthService
   ) {
 
     this.timesheet.date =new Date();
-    this.timesheet.username= this.authService.loggedUser;
+  
     
 
     this.reactForm = new FormGroup({

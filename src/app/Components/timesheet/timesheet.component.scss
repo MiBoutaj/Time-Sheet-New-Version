@@ -1,3 +1,10 @@
+@import "/src/app/style/base/base.scss";
+@import "/src/app/style/inputs/slider.scss";
+@import "/src/app/style/inputs/color-picker.scss";
+@import "/src/app/style/inputs/input.scss";
+@import "/src/app/style/inputs/textbox.scss";
+@import "/src/app/style/inputs/uploader.scss";
+
 * {
     font-family: "Montserrat", sans-serif;
 

@@ -1,4 +1,4 @@
-import { ManagerProject } from "./ManagerProject.model";
+import { Task } from "./Task.model";
 
 export class Project {
 
@@ -7,6 +7,6 @@ export class Project {
     description: string;
     duration: number;
     client: string;
-    managerProject: ManagerProject;
+    taskList: Task[];
 
 }

@@ -2,39 +2,44 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/model/Project.model';
+import { Task } from 'src/app/model/Task.model';
 import { ProjectServiceService } from 'src/app/services/project-service.service';
-import { Customer } from './customer';
-import { CustomerService } from './customerservice';
+import { TaskService } from 'src/app/services/task.service';
+
 
 
 @Component({
   selector: 'app-projet-tache',
   templateUrl: './projet-tache.component.html',
-  styleUrls: ['./projet-tache.component.scss'],
-  providers: [CustomerService]
+  styleUrls: ['./projet-tache.component.scss']
 })
 export class ProjetTacheComponent implements OnInit {
 
-  customers: Customer[];
+ 
+  taskLisk : Task[];
   project = new Project();
   id : string;
   data: any;
   chartOptions: any;
   
-  constructor(private customerService: CustomerService,
+  constructor(
     private projectService: ProjectServiceService,
-    private router : ActivatedRoute) { }
+    private router : ActivatedRoute,
+    private taskService : TaskService
+    ) { }
 
   ngOnInit(): void {
 
     this.router.paramMap.subscribe(params=>{ this.id = params.get('id_Project'); console.log( params.get('id_Project'))});
 
     this.projectService.findProjectById(this.id).subscribe(data=> this.project =data)
+   
+
+    this.taskService.findAllTaskProjectById(this.id).subscribe(da => this.taskLisk=da)
+    console.log(this.taskLisk)
+    console.log(this.project)
   
 
-    this.customerService.getCustomersMedium().then(data => {
-      this.customers = data;
-    });
 
     this.data = {
       labels: ['To Do','Inprogress','Done'],
@@ -59,9 +64,9 @@ export class ProjetTacheComponent implements OnInit {
   calculateCustomerTotal(name) {
     let total = 0;
 
-    if (this.customers) {
-      for (let customer of this.customers) {
-        if (customer.representative.name === name) {
+    if (this.taskLisk) {
+      for (let task of this.taskLisk) {
+        if (task.employeeTask.username === name) {
           total++;
         }
       }

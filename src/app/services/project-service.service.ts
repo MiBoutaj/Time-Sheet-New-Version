@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from '../model/Project.model';
 import { ProjectDTO } from '../model/ProjectDTO.model';
+import { Task } from '../model/Task.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +12,22 @@ import { ProjectDTO } from '../model/ProjectDTO.model';
 export class ProjectServiceService {
 
 
-  private baseUrl = "http://localhost:8084"
+  private baseUrl = "http://localhost:8084/users/project"
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService : AuthService) { }
 
   addProjectDTo(pr: ProjectDTO): Observable<ProjectDTO> {
-    return this.http.post<ProjectDTO>(this.baseUrl + "/add", pr);
+    console.log(this.authService.employee.id)
+    return this.http.post<ProjectDTO>(this.baseUrl+"/addProject/" + this.authService.employee.id, pr);
   }
 
 
   listProject(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl + "/findAll")
+    return this.http.get<Project[]>(this.baseUrl + "/findAllProject/byEmployeeManager/"+this.authService.employee.id)
   }
+
+
 
   deleteProject(id: number) {
     console.log(id)
@@ -43,25 +48,17 @@ export class ProjectServiceService {
 
 
   findProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(this.baseUrl + "/findById/" + id)
+    return this.http.get<Project>(this.baseUrl + "/findProjectById/" + id)
   }
-  addEmployeeListToProject(id: string, ids: number[]) {
-    let params = new HttpParams().set("params", ids.toString());
 
-
-    console.log(ids.toString)
-    return this.http.post(this.baseUrl + "/addEmployeeListToProject/" + id ,{}, {'params': params}).subscribe(
-      suc => {
-        console.log("alllerr")
-
-
-      },
-      err => {
-        console.log(err);
-
-      }
-    );
+  deleteProjectById(id : number){
+    console.log(this.baseUrl +"/deleteProjectById/" + id)
+    return this.http.delete(this.baseUrl +"/deleteProjectById/" + id).subscribe();
   }
+
+
+
+
 
 
 

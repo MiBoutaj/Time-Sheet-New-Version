@@ -4,16 +4,24 @@
 
     <p-toolbar>
         <ng-template pTemplate="left">
-            <h3>Project lists</h3>
+            <h4>Project Lists</h4>
         </ng-template>
 
         <ng-template pTemplate="right">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
-                (click)="openNew()"></button>
+            <!-- <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                (click)="openNew()"></button> -->
+                <!-- <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                    <button ejs-button cssClass="e-small e-round" iconCss="e-btn-sb-icons e-add-icon" (click)="openNew()"></button>
+                </div> -->
+
+                <button class="e-btn e-outline e-success"
+                (click)="openNew()">
+                Add Project
+            </button>
         </ng-template>
     </p-toolbar>
 
-    <div class="card">
+    <div class="card" style="margin-top: 10px;">
         <div class="card-body">
             <div class="row">
 
@@ -30,17 +38,17 @@
                 <div class="col-lg-12 control-section card-control-section basic_card_layout">
                     <div class="e-sample-resize-container e-card-resize-container">
                         <div class='row'>
-                            <div class="row card-layout">
-                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6" *ngFor="let project of projectList">
+                            <div class="row card-layout" >
+                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6" style="margin-top: 20px;" *ngFor="let project of projectList">
                                     <div tabindex="0" class="e-card" id="basic_card">
                                         <div class="e-card-header">
                                             <div class="e-card-header-caption">
                                                 <div class="e-card-header-title">{{project.name}}</div>
-                                                <div class="e-card-sub-title">By John Doe | Jan 20, 2018 </div>
+                                                <div class="e-card-sub-title">{{project.client}} | {{project.duration}} </div>
                                             </div>
                                         </div>
-                                        <div class="e-card-content">
-
+                                        <div class="e-card-content" style="height: 100px;">
+                                            {{project.description}}
                                         </div>
                                         <div class="e-card-actions">
                                             <button class="e-btn e-outline e-primary"
@@ -82,7 +90,7 @@
 
     <p-dialog [(visible)]="projecttDialog" [style]="{width: '450px'}" header="Project Details" [modal]="true"
         styleClass="p-fluid">
-        <div class="content-wrapper" style="margin-bottom: 25px;">
+        
             <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal" novalidate="">
 
                 <div class="form-group">
@@ -113,7 +121,7 @@
 
                 <div class="form-group">
                     <div class="e-float-input">
-                        <input id="check" type="text" formControlName="check" [(ngModel)]="projectDTO.description">
+                        <textarea id="check" type="text" formControlName="check" [(ngModel)]="projectDTO.description"></textarea>
                         <span class="e-float-line"></span>
                         <label for="check" class="e-float-text">Description</label>
                     </div>
@@ -151,6 +159,6 @@
                         Project</button>
                 </div>
             </form>
-        </div>
+       
 
     </p-dialog>

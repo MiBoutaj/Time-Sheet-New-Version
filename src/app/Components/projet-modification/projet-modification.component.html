@@ -1,182 +1,210 @@
 <div class="container-fluid page">
-    <h1>Project Modification</h1>
-    <div class="card">
+    <p-toolbar>
+        <ng-template pTemplate="left">
+            <h4>Project Modification</h4>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <button routerLinkActive="list-item-active" [routerLink]="['/projet-tache',project.id_Project]"
+                class="e-btn e-outline e-warning">
+                Back to project details
+            </button>
+
+        </ng-template>
+    </p-toolbar>
+
+    <div class="card" style="margin-top: 10px;">
+
         <div class="card-body">
 
-            <p-splitter [style]="{'height': '300px'}" [panelSizes]="[20,80]" [minSizes]="[10,0]" styleClass="mb-5">
+            <p-splitter [style]="{'height': '50px'}" [panelSizes]="[20,20]" [minSizes]="[10,0]" styleClass="mb-5">
                 <ng-template pTemplate>
-                    <p-splitter layout="vertical" [panelSizes]="[15,85]">
+                    <p-splitter layout="vertical">
                         <ng-template pTemplate>
                             <div class="col flex align-items-center justify-content-center">
                                 <h3>{{project.name}}</h3>
                             </div>
                         </ng-template>
-                        <ng-template pTemplate>
-                            <p-splitter [panelSizes]="[50,80]">
-                                <ng-template pTemplate>
-
-
-                                    <div class="card small" style="width:300px;border: none;">
-                                        <p-table styleClass="p-datatable-sm" responsiveLayout="scroll"
-                                            aria-readonly="true" class="text-center">
-                                            <ng-template pTemplate="header">
-                                                <tr>
-                                                    <td>
-                                                        <h6> Client</h6>
-                                                    </td>
-                                                    <td>{{project.client}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h6> Duration</h6>
-                                                    </td>
-                                                    <td>{{project.duration}} j</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h6> Description</h6>
-                                                    </td>
-                                                    <td>{{project.description}}</td>
-                                                </tr>
-                                            </ng-template>
-                                        </p-table>
-                                    </div>
-
-
-
-                                </ng-template>
-                                <ng-template pTemplate>
-
-                                </ng-template>
-                                <ng-template pTemplate>
-                                    <div class="col flex align-items-center justify-content-center">
-                                        <div class="row">
-                                            <div class="text-center">
-                                                <p>Modify the project : </p>
-                                            </div>
-                                            <div class="text-center">
-                                                <button pButton type="button" label="Modify"
-                                                    class="p-button-secondary"></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                            </p-splitter>
-                        </ng-template>
                     </p-splitter>
                 </ng-template>
-            </p-splitter>         
+            </p-splitter>
 
-            <div id="multiselect-sample" class="control-section">
-                <div id="temp" class="control-styles">
-                    <h4>Template</h4>
-                    <ejs-multiselect id='multi-template' [dataSource]='emplyeeList' [fields]='multifields' [mode]='box'
-                        [placeholder]='multiwatermark' [(value)]="ids">
-                        <ng-template #headerTemplate>
-                            <div class="multihead"> <span class="multiphoto">Photo</span> <span
-                                    style="margin-left:17px;">Employee Info</span></div>
-                        </ng-template>
-                        <ng-template #itemTemplate let-data>
-                            <div>
-                                <!-- <img class="multiempImage" src="./assets/auto-complete/Employees/{{data.Eimg}}.png"
-                                    alt="employee" /> -->
-                                <div class="multiename"> {{data.firstName}} </div>
-                                <div class="multijob"> {{data.lastName}} </div>
+
+
+
+
+            <p-toast></p-toast>
+
+            <div>
+                <div class="card small">
+                    <p-table #dt [value]="project.taskList" rowGroupMode="rowspan" groupRowsBy="representative.name"
+                        sortField="representative.name" sortMode="single" responsiveLayout="scroll"
+                        styleClass="p-datatable-sm" [rows]="10" [paginator]="true"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [showCurrentPageReport]="true">
+                        <ng-template pTemplate="caption">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                                    <h5 class="m-0">Manage Tasks</h5>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 justify-content-end">
+                                    <div style="float: right;">
+                                        <button class="e-btn e-outline e-success" (click)="openNew()">
+                                            Add New Task</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </ng-template>
-                        <ng-template #valueTemplate="" let-data >
-                            <div>
-                                <!-- <img class="valueTemp" src="./assets/auto-complete/Employees/{{data.Eimg}}.png"
-                                    alt="employee" /> -->
-                                <div class="nameTemp"> {{data.lastName}} </div>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortable Column="id">
+                                    <div class="text-center">Id<p-sortIcon field="name"></p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="description">Description<p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="duration">
+                                    <div class="text-center">Duration<p-sortIcon field="price">
+                                        </p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="inventoryStatus">
+                                    <div class="text-center">Status <p-sortIcon field="inventoryStatus">
+                                        </p-sortIcon>
+                                    </div>
+                                </th>
+                                <th pSortableColumn="verified">
+                                    <div class="text-center">Verified<p-sortIcon field="price">
+                                        </p-sortIcon>
+                                    </div>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-task>
+                            <tr>
+                                <td class="text-center">{{task.id_Task}}</td>
+                                <td>{{task.nom}}</td>
+                                <td>{{task.description}}</td>
+                                <td class="text-center">{{task.duration}}</td>
+                                <td class="text-center"><span>{{task.status}}</span></td>
+                                <td class="text-center">{{task.verified}}</td>
+                                <td>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-info mr-2" style="height: 25px;width: 25px;"
+                                        (click)="editProduct(task)"></button>
+
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                        (click)="deleteProduct(task)" style="height: 25px;width: 25px"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <div class="flex align-items-center justify-content-between">
+                                In total there are {{ project.taskList ? project.taskList.length : 0 }} tasks.
                             </div>
                         </ng-template>
-                    </ejs-multiselect>
+                    </p-table>
                 </div>
             </div>
 
-            <button (click)="view()">A</button>
-
-
-
-            <!-- <div class="control-section">
-                <ejs-grid [dataSource]='taskList' allowPaging='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar' (actionBegin)='actionBegin($event)' (actionComplete)='actionComplete($event)'>
-                    <e-columns>
-                        <e-column field='id_Task' headerText='Task ID' width='120' textAlign='Right' [isPrimaryKey]='true'></e-column>
-                        <e-column field='nom' headerText='Task Name' width='120'></e-column>
-                        <e-column field='description' headerText='Task Description' width='120' format='C2' textAlign='Right'></e-column>
-                        <e-column field='duration' headerText='Task Duration' width='130' format='yMd' textAlign='Right'></e-column>
-                        <e-column field='status' headerText='Task Status' width='150'></e-column>
-                    </e-columns>
-                    <ng-template #editSettingsTemplate let-data>
-                        <div [formGroup]="taskForm">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <div class="e-float-input e-control-wrapper" >
-                                        <input formControlName="OrderID" data-msg-containerid='OrderIDError' id="OrderID" name="OrderID" type="text" [attr.disabled]="!data.isAdd ? '' : null">
-                                        <span class="e-float-line"></span>
-                                        <label class="e-float-text e-label-top" for="OrderID"> Order ID</label>
-                                    </div>
-                                  
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <div class="e-float-input e-control-wrapper" [ngClass]="{'e-error': TaskName.invalid && (TaskName.dirty || TaskName.touched)}">
-                                        <input formControlName="TaskName" data-msg-containerid='TaskNameError' id="TaskName" name="TaskName" type="text">
-                                        <span class="e-float-line"></span>
-                                        <label class="e-float-text e-label-top" for="TaskName">Task Name</label>
-                                    </div>
-                                    <div id="CustomerNameError" [style.visibility]='((TaskName.invalid && (TaskName.dirty || TaskName.touched)) || (TaskName.invalid && submitClicked))? "visible": "hidden"'>
-                                        <label class="e-error" for="CustomerName" id="CustomerName-info" style="display: block;">*Customer Name is required</label>
-                                    </div>
-                                </div>
+            <p-dialog [(visible)]="taskDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+                styleClass="p-fluid">
+                <ng-template pTemplate="content">
+                    <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal" novalidate="">
+                        <div class="form-group">
+                            <div class="e-float-input">
+                                <input readonly id="id_Task" type="text" formControlName="id_Task"
+                                    [(ngModel)]="task.id_Task">
+                                <span class="e-float-line"></span>
+                                <label for="check" class="e-float-text">Task Id</label>
                             </div>
-                            <!-- <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <ejs-numerictextbox formControlName="Freight" id="Freight" placeholder="Freight" floatLabelType='Always'></ejs-numerictextbox>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <ejs-datepicker id="OrderDate" formControlName="OrderDate" placeholder="Order Date" floatLabelType='Always'></ejs-datepicker>
-                                    <div id="OrderDateError" [style.visibility]='((TaskDuration.invalid && (TaskDuration.dirty || TaskDuration.touched)) || (TaskDuration.invalid && submitClicked)) ? "visible": "hidden"'>
-                                        <label class="e-error" for="OrderDate" id="OrderDate-info" style="display: block;">*Order Date is required</label>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="e-float-input">
+                                <input id="nom" type="text" formControlName="nom" [(ngModel)]="task.nom">
+                                <span class="e-float-line"></span>
+                                <label for="check" class="e-float-text">Name</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="e-float-input">
+                                <textarea formControlName="description" [(ngModel)]="task.description"></textarea>
+                                <span class="e-float-line"></span>
+                                <label for="check" class="e-float-text">Description</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="e-float-input">
+                                <input id="hours" formControlName="duration" type="number" min="0" max="100"
+                                    name="number" step="1" value="4" [(ngModel)]="task.duration">
+
+                                <span class="e-float-line"></span>
+                                <label for="check" class="e-float-text">Duration</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="e-float-input">
+                                <ejs-dropdownlist formControlName="status" id='status' [dataSource]='Status'
+                                    [(value)]='task.status' [fields]='fields1' [placeholder]='waterMark'
+                                    [popupHeight]='height'></ejs-dropdownlist>
+                                <span class="e-float-line"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="e-float-input">
+                                <ejs-dropdownlist formControlName="verified" id='verified' [dataSource]='Verified'
+                                    [(value)]='task.verified' [fields]='fields2' [placeholder]='waterMark1'
+                                    [popupHeight]='height'></ejs-dropdownlist>
+                                <span class="e-float-line"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <ejs-dropdownlist id='employees' [dataSource]='emplyeeList' [fields]='fields'
+                                [popupHeight]='height' [placeholder]='watermark' [(value)]="ide">
+                                <ng-template #headerTemplate>
+                                    <div class="head"> <span class="photo">Photo</span> <span
+                                            style="margin-left:17px;">Employee Info</span></div>
+                                </ng-template>
+                                <ng-template #itemTemplate let-data>
+                                    <div>
+                                        <!-- <img class="empImage" src="./assets/auto-complete/Employees/{{data.Eimg}}.png" alt="employee" /> -->
+                                        <div class="multiename"> {{data.firstName}} </div>
+                                        <div class="multijob"> {{data.lastName}} </div>
                                     </div>
-                                </div>
-                            </div>  -->
-                            <!-- <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <ejs-dropdownlist id="ShipCountry" formControlName="ShipCountry" [dataSource]='shipCountryDistinctData' [fields]="{text: 'ShipCountry', value: 'ShipCountry' }" placeholder="Ship Country" popupHeight='300px' floatLabelType='Always'></ejs-dropdownlist>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <ejs-dropdownlist id="ShipCity" formControlName="ShipCity" [dataSource]='shipCityDistinctData' [fields]="{text: 'ShipCity', value: 'ShipCity' }" placeholder="Ship City" popupHeight='300px' floatLabelType='Always'></ejs-dropdownlist>
-                                </div>
-                            </div> -->
-                            <!-- <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <div class="e-float-input e-control-wrapper">
-                                        <textarea formControlName="ShipAddress" id="ShipAddress" name="ShipAddress" type="text"></textarea>
-                                        <span class="e-float-line"></span>
-                                        <label class="e-float-text e-label-top" for="ShipAddress">Ship Address</label>
+                                </ng-template>
+                                <ng-template #valueTemplate let-data>
+                                    <div>
+                                        <!-- <img class="valueTemp" src="./assets/auto-complete/Employees/{{data.Eimg}}.png" height="26px" width="26px" alt="employee" /> -->
+                                        <div class="nameTemp"> {{data.lastName}} </div>
                                     </div>
-                                </div>
-                            </div> -->
-                        <!-- </div> 
-                    </ng-template>
-                </ejs-grid>
-            </div> --> 
+                                </ng-template>
+                            </ejs-dropdownlist>
+                        </div>
+                    </form>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <button class="e-btn e-outline e-primary" style="width: 150px;" (click)="saveProduct()">
+                        Save
+                    </button>
+                    <button class="e-btn e-outline e-danger" style="width: 150px;" (click)="hideDialog()">
+                        Cancel
+                    </button>
 
 
 
 
-            <div class="control-section">
-                <ejs-grid [dataSource]='taskList' allowPaging='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'>
-                    <e-columns>
-                        <e-column field='id_Task' headerText='Task ID' width='120' textAlign='Right' [isPrimaryKey]='true'></e-column>
-                        <e-column field='nom' headerText='Task Name' width='120'></e-column>
-                        <e-column field='description' headerText='Task Description' width='120' format='C2' textAlign='Right'></e-column>
-                        <e-column field='duration' headerText='Task Duration' width='130' format='yMd' textAlign='Right'></e-column>
-                        <e-column field='status' headerText='Task Status' width='150'></e-column>
-                    </e-columns>
-                </ejs-grid>
-            </div>
+                </ng-template>
+            </p-dialog>
+
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
 
 

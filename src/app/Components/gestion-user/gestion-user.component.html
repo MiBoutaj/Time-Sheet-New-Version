@@ -1,18 +1,33 @@
 <p-toast position="top-right"></p-toast>
 
 <div class="container-fluid page">
-    <h1>Calender</h1>
-    <div class="card">
+
+    <p-toolbar>
+        <ng-template pTemplate="left">
+            <h4>Manager - Developer</h4>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+
+            <button class="e-btn e-outline e-success">
+                Modify Manager/Developer
+            </button>
+
+        </ng-template>
+    </p-toolbar>
+
+    <div class="card" style="margin-top: 10px;">
+
         <div class="card-body">
 
             <div class="row widgets">
-                <p-steps [model]="items" [(activeIndex)]="activeIndex"></p-steps>
+
 
 
                 <div class="col-lg-5 control-section" style="margin-bottom: 25px; width: 500px;">
-                    <div class="content-wrapper" style="margin-bottom: 25px;" *ngIf="activeIndex===0">
+                    <div class="content-wrapper" style="margin-bottom: 25px;">
                         <div class="formtitle">
-                            <span>Add Employee</span>
+                            <span>Add Developer</span>
                         </div>
                         <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal"
                             novalidate="">
@@ -46,8 +61,8 @@
 
                             <div class="form-group">
                                 <div class="e-float-input">
-                                    <input class="form-control" type="file" id="formFile" style="margin-top: 5px;" #selectFile 
-                                    >
+                                    <input class="form-control" type="file" id="formFile" style="margin-top: 5px;"
+                                        #selectFile>
                                     <span class="e-float-line"></span>
                                     <label for="check" class="e-float-text">Photo</label>
                                 </div>
@@ -95,68 +110,29 @@
                                 </div>
                             </div>
                             <div class="row justify-content-md-center">
-                                <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789; margin-left: 10px;"
-                                    (click)="Next()">Next <i class="pi pi-angle-double-right"
-                                        style="font-size: 1rem"></i></button>
+                                <button class="e-btn e-outline e-primary" style="width: 170px;">
+                                    Add Developer
+                                </button>
 
                             </div>
                         </form>
                     </div>
+                </div>
 
 
-
-
-
-
-
-                    <div class="content-wrapper" style="margin-bottom: 25px;" *ngIf="activeIndex===1">
+                <div class="col-lg-5 control-section" style="margin-bottom: 25px; width: 500px;">
+                    <div class="content-wrapper" style="margin-bottom: 25px;">
                         <div class="formtitle">
-                            <span>add Role</span>
-                        </div>
-                        <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal"
-                            novalidate="">
-                            <div class="form-group">
-                                <div class="e-float-input">
-                                    <input id="role" type="text" formControlName="check" [(ngModel)]="employee.roles">
-                                    <span class="e-float-line"></span>
-                                    <label for="check" class="e-float-text">Role</label>
-                                </div>
-                                <div *ngIf="check.errors">
-                                    <div *ngIf="check.errors.required && check.touched" class="e-error">
-                                        This field is required.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-md-center ">
-                                <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789; margin-left: 0px;"
-                                    (click)="Back()"> <i class="pi pi-angle-double-left" style="font-size: 1rem"></i>
-                                    Back</button>
-                                <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789; margin-left: 10px;"
-                                    (click)="Next()">Next <i class="pi pi-angle-double-right"
-                                        style="font-size: 1rem"></i></button>
-                            </div>
-                        </form>
-                    </div>
-
-
-
-
-
-                    <div class="content-wrapper" style="margin-bottom: 25px;" *ngIf="activeIndex===2">
-                        <div class="formtitle">
-                            <span>Login</span>
+                            <span>Add Manager</span>
                         </div>
                         <form id="formId" [formGroup]="reactForm" #formDir="ngForm" class="form-horizontal"
                             novalidate="">
                             <div class="form-group">
                                 <div class="e-float-input">
                                     <input id="check" type="text" formControlName="check"
-                                        [(ngModel)]="employee.username">
+                                        [(ngModel)]="employee.firstName">
                                     <span class="e-float-line"></span>
-                                    <label for="check" class="e-float-text">Login</label>
+                                    <label for="check" class="e-float-text">First Name</label>
                                 </div>
                                 <div *ngIf="check.errors">
                                     <div *ngIf="check.errors.required && check.touched" class="e-error">
@@ -167,9 +143,10 @@
 
                             <div class="form-group">
                                 <div class="e-float-input">
-                                    <input id="check" type="password" formControlName="check">
+                                    <input id="check" type="text" formControlName="check"
+                                        [(ngModel)]="employee.lastName">
                                     <span class="e-float-line"></span>
-                                    <label for="check" class="e-float-text">Password</label>
+                                    <label for="check" class="e-float-text">Last Name</label>
                                 </div>
                                 <div *ngIf="check.errors">
                                     <div *ngIf="check.errors.required && check.touched" class="e-error">
@@ -180,31 +157,59 @@
 
                             <div class="form-group">
                                 <div class="e-float-input">
-                                    <input id="check" type="password" formControlName="check">
+                                    <input class="form-control" type="file" id="formFile" style="margin-top: 5px;"
+                                        #selectFile>
                                     <span class="e-float-line"></span>
-                                    <label for="check" class="e-float-text">Confirm password</label>
+                                    <label for="check" class="e-float-text">Photo</label>
                                 </div>
-                                <div *ngIf="check.errors">
-                                    <div *ngIf="check.errors.required && check.touched" class="e-error">
-                                        This field is required.
+                            </div>
+
+                            <div class="form-group">
+                                <div class="e-float-input">
+                                    <input id="email_check" type="text" formControlName="email_check"
+                                        [(ngModel)]="employee.email">
+                                    <span class="e-float-line"></span>
+                                    <label for="email_check" class="e-float-text">Email</label>
+                                </div>
+                                <div *ngIf="email_check.errors ">
+                                    <div *ngIf="email_check.errors.email && email_check.touched" class="e-error">
+                                        Please enter a valid email address.
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="e-float-input">
+                                    <input id="date_check" type="date" formControlName="date_check"
+                                        [(ngModel)]="employee.startDate">
+                                    <span class="e-float-line"></span>
+                                    <label for="date_check" class="e-float-text">Start Date</label>
+                                    <div *ngIf="date_check.errors ">
+                                        <div *ngIf="date_check.errors.date && date_check.touched" class="e-error">
+                                            Please enter a valid date.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <div class="e-float-input">
+                                    <input id="date_check" type="date" formControlName="date_check"
+                                        [(ngModel)]="employee.endDate">
+                                    <span class="e-float-line"></span>
+                                    <label for="date_check" class="e-float-text">End Date</label>
+                                    <div *ngIf="date_check.errors ">
+                                        <div *ngIf="date_check.errors.date && date_check.touched" class="e-error">
+                                            Please enter a valid date.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <button class="e-btn e-outline e-primary" style="width:170px;">
+                                    Add Manager
+                                </button>
 
-
-
-
-                            <div class="row justify-content-md-center ">
-                                <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789; margin-left: 0px;"
-                                    (click)="Back()"> <i class="pi pi-angle-double-left" style="font-size: 1rem"></i>
-                                    Back</button>
-                                <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                    style="height:40px;width: 150px; color: #4a9ad7;border: #868789; margin-left: 10px;"
-                                    (click)="Next()">Next <i class="pi pi-angle-double-right"
-                                        style="font-size: 1rem"></i></button>
                             </div>
                         </form>
                     </div>
@@ -219,7 +224,18 @@
 
 
 
-                    <div class="content-wrapper" style="margin-bottom: 25px;" *ngIf="activeIndex===3">
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- <div class="content-wrapper" style="margin-bottom: 25px;" *ngIf="activeIndex===3">
                         <div class="formtitle">
                             <span>Confiramtion</span>
                         </div>
@@ -257,12 +273,12 @@
                                 <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
                                     style="height:40px;width: 150px; color: #4a9ad7;border: #868789; margin-left: 0px;"
                                     (click)="Back()">Confirmation <i class="pi pi-check" style="font-size: 1rem"></i>
-                                    </button>
-        
+                                </button>
+
 
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
 
 
