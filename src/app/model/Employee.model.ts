@@ -1,3 +1,4 @@
+import { Byte } from "@angular/compiler/src/util";
 import { Role } from "./Role.mode";
 
 export class Employee {
@@ -7,8 +8,6 @@ export class Employee {
     lastName: string;
     email: string;
     password: string;
-    startDate: Date;
-    endDate: Date;
-    photo: string;
+    photo: Byte[];
     roles: string[];
 }

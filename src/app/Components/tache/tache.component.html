@@ -14,11 +14,14 @@
 
             <div class="control-section">
                 <div class="content-wrapper">
-                    <ejs-kanban #kanbanObj keyField='status' [dataSource]='taskList' [cardSettings]='cardSettings'>
+                    <ejs-kanban #kanbanObj keyField='status' id="kanban" [dataSource]='taskList'
+                        fields.primaryKey="status" [cardSettings]='cardSettings' aria-readonly="true"
+                        (dataStateChange)='dataStateChange($event)' (dataSourceChanged)='dataSourceChanged($event)'>
                         <e-columns>
-                            <e-column headerText='To Do' keyField='Open' footerCssField='e-bug' grabberField='#E64A19'></e-column>
+                            <e-column headerText='To Do' keyField='ToDo' footerCssField='e-bug' grabberField='#E64A19'>
+                            </e-column>
                             <e-column headerText='In Progress' keyField='InProgress'></e-column>
-                            <e-column headerText='Done' keyField='Close'></e-column>
+                            <e-column headerText='Done' keyField='Done'></e-column>
                         </e-columns>
                     </ejs-kanban>
                 </div>

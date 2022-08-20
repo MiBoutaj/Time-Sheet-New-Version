@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { DataSourceChangedEventArgs, DataStateChangeEventArgs } from '@syncfusion/ej2-angular-kanban';
+import { Observable, Subject } from 'rxjs';
 import { Task } from '../model/Task.model';
+import { TaskChart } from '../model/TaskChart.model';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
+export class TaskService extends Subject<DataStateChangeEventArgs> {
 
   private baseUrl = "http://localhost:8084/users/task"
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {super(); }
 
   findAllTask(): Observable<Task[]> {
     return this.http.get<Task[]>(this.baseUrl + "/fidAllTaskByEmployee/" + this.authService.employee.id);
@@ -36,6 +38,22 @@ export class TaskService {
     return this.http.post<Task>(this.baseUrl + "/editTask/"+id,task)
   }
 
+  ChartTask(id: string):Observable<TaskChart>{
+    return this.http.get<TaskChart>(this.baseUrl+"/ChartTask/"+id)
+  }
+
+
+  updateCard(state: DataSourceChangedEventArgs): Observable<any> {
+    console.log(state.changedRecords[0])
+    return this.http.put(this.baseUrl + "/editTaskForEmplyee/", state.changedRecords[0]);
+}
+
+public execute(state: any): void {
+  this.findAllTask().subscribe(x => super.next());
+}
+
 
 
 }
+
+

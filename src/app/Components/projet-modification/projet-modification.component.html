@@ -120,7 +120,7 @@
                                 <input readonly id="id_Task" type="text" formControlName="id_Task"
                                     [(ngModel)]="task.id_Task">
                                 <span class="e-float-line"></span>
-                                <label for="check" class="e-float-text">Task Id</label>
+                                <label for="check" class="e-float-text"></label>
                             </div>
 
                         </div>
@@ -150,7 +150,7 @@
                             </div>
 
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 10px;">
                             <div class="e-float-input">
                                 <ejs-dropdownlist formControlName="status" id='status' [dataSource]='Status'
                                     [(value)]='task.status' [fields]='fields1' [placeholder]='waterMark'
@@ -158,7 +158,7 @@
                                 <span class="e-float-line"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 10px;">
                             <div class="e-float-input">
                                 <ejs-dropdownlist formControlName="verified" id='verified' [dataSource]='Verified'
                                     [(value)]='task.verified' [fields]='fields2' [placeholder]='waterMark1'
@@ -166,7 +166,7 @@
                                 <span class="e-float-line"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 10px;">
                             <ejs-dropdownlist id='employees' [dataSource]='emplyeeList' [fields]='fields'
                                 [popupHeight]='height' [placeholder]='watermark' [(value)]="ide">
                                 <ng-template #headerTemplate>
@@ -175,15 +175,15 @@
                                 </ng-template>
                                 <ng-template #itemTemplate let-data>
                                     <div>
-                                        <!-- <img class="empImage" src="./assets/auto-complete/Employees/{{data.Eimg}}.png" alt="employee" /> -->
+                                         <img class="empImage"[src]="'data:image/jpg;base64,' + data.photo" height="26px" width="26px" alt="employee" /> 
                                         <div class="multiename"> {{data.firstName}} </div>
                                         <div class="multijob"> {{data.lastName}} </div>
                                     </div>
                                 </ng-template>
                                 <ng-template #valueTemplate let-data>
                                     <div>
-                                        <!-- <img class="valueTemp" src="./assets/auto-complete/Employees/{{data.Eimg}}.png" height="26px" width="26px" alt="employee" /> -->
-                                        <div class="nameTemp"> {{data.lastName}} </div>
+                                         <img class="valueTemp" [src]="'data:image/jpg;base64,' + data.photo"  height="26px" width="26px" alt="employee" /> 
+                                        <div class="nameTemp"> {{data.lastName}} {{data.firstName}} </div>
                                     </div>
                                 </ng-template>
                             </ejs-dropdownlist>

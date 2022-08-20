@@ -100,6 +100,7 @@ export class ProjetModificationComponent implements OnInit {
 
   openNew() {
     this.task = new Task();
+    this.ide = null;
     this.submitted = false;
     this.taskDialog = true;
   }
@@ -119,6 +120,7 @@ export class ProjetModificationComponent implements OnInit {
 
   editProduct(task1: Task) {
     console.log(task1)
+    this.ide = task1.employeeTask.id;
     this.task = {...task1};
     console.log(this.task)
     this.taskDialog = true;
@@ -133,7 +135,6 @@ export class ProjetModificationComponent implements OnInit {
       accept: () => {
         this.taskService.deleteTaskById(task.id_Task);
         this.projectService.findProjectById(this.id).subscribe(data => this.project = data);
-
         this.ngOnInit();
         this.task = new Task();
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Task Deleted', life: 3000 });
@@ -159,7 +160,7 @@ export class ProjetModificationComponent implements OnInit {
       if (this.task.id_Task) {
 
 
-        this.taskService.editTask(this.task.id_Task,this.task).subscribe(
+        this.taskService.addTaskToEmployee(this.id,this.ide,this.task).subscribe(
           suc => {
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'Task Updated', life: 3000});            this.projectService.findProjectById(this.id).subscribe(data => this.project = data);
             this.task = new Task();

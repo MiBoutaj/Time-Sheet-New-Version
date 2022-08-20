@@ -89,27 +89,24 @@ body {
 
     &.projet-InProgress {
         background: #FEEDAF;
-        color: #C63737;
+        color: #f6c103;
     }
 
     &.projet-Done {
         background: #B3E5FC;
         color: #3767c6;
     }
-
-}
-
-.true-icon{
-    &.pi-check-circle{
+    &.projet-true {
+        background: #bcf7bc;
         color: #017001;
     }
-}
 
-.false-icon{
-    &.pi-times-circle{
-        color: #a81d02;
+    &.projet-false {
+        background: #f08c8c;
+        color: #c30d0d;
     }
-    
+
+
 }
 
 
@@ -117,3 +114,31 @@ body {
 
 
 
+.sammy-nowrap-2 {
+    text-overflow: ellipsis ellipsis;
+    hyphens:auto;
+    word-wrap:break-word;
+    }
+
+
+    .user {
+        font-size: 14px;
+      }
+      mat-toolbar {
+        background: #f7f7f7;
+      }
+      .user-image {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        &-icon {
+          height: 18px;
+          font-size: 16px;
+        }
+      }
+      
+      ::ng-deep {
+        .mat-menu-content {
+          width: 160px;
+        }
+      }

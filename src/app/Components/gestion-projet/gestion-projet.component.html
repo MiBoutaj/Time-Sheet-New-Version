@@ -14,10 +14,12 @@
                     <button ejs-button cssClass="e-small e-round" iconCss="e-btn-sb-icons e-add-icon" (click)="openNew()"></button>
                 </div> -->
 
-                <button class="e-btn e-outline e-success"
-                (click)="openNew()">
-                Add Project
-            </button>
+          
+
+            <button class="e-btn e-outline e-primary" style="width: 150px;"
+            (click)="openNew()">
+            Add Project
+        </button>
         </ng-template>
     </p-toolbar>
 
@@ -48,9 +50,9 @@
                                             </div>
                                         </div>
                                         <div class="e-card-content" style="height: 100px;">
-                                            {{project.description}}
+                                           <p class="sammy-nowrap-2" style="height: 90px;" > {{project.description}}</p>
                                         </div>
-                                        <div class="e-card-actions">
+                                        <div class="e-card-actions" style="margin-top: 5px;">
                                             <button class="e-btn e-outline e-primary"
                                                 routerLinkActive="list-item-active"
                                                 [routerLink]="['/projet-tache',project.id_Project]">
@@ -153,7 +155,7 @@
                 </div>
             </div> -->
 
-                <div class="row justify-content-md-center">
+                <div style="margin-top: 10px;" class="row justify-content-md-center">
                     <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
                         style="height:40px;width: 150px; color: #4a9ad7;border: #868789;" (click)="addProject()">Add
                         Project</button>

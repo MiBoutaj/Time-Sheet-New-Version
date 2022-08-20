@@ -67,6 +67,7 @@ import { AgendaService, DayService, MonthService, ScheduleModule, WeekService, W
 import { KanbanAllModule } from '@syncfusion/ej2-angular-kanban';
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { EventModificationComponent } from './Components/event-modification/event-modification.component';
+import { UserModificationComponent } from './Components/user-modification/user-modification.component';
 
 
 
@@ -93,6 +94,7 @@ FullCalendarModule.registerPlugins([
     AddProjetComponent,
     ProjetModificationComponent,
     EventModificationComponent,
+    UserModificationComponent,
 
 
 

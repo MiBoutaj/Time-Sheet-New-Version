@@ -18,7 +18,7 @@
                         <div class="e-float-input">
                             <input type="text" name="username" class="form-control" [(ngModel)]="user.username">
                             <span class="e-float-line"></span>
-                            <label for="check" class="e-float-text">User Name</label>
+                            <label for="check" class="e-float-text">Login</label>
                         </div>
                     </div>
 
@@ -31,9 +31,12 @@
                     </div>
 
                     <div class="row justify-content-md-center">
-                            <button id="validateSubmit" class="samplebtn e-control e-btn " type="submit"
-                                style="height:40px;width: 150px; color: #4a9ad7;border: #868789;"
-                                (click)="onLoggedin()">Connexion</button>
+                 
+
+                                <button class="e-btn e-outline e-primary" style="width: 150px;"
+                                (click)="onLoggedin()">
+                                Connexion
+                            </button>
 
 
                      

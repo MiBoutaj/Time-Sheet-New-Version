@@ -1,4 +1,3 @@
-
 @import "/src/app/style/base/base.scss";
 @import "/src/app/style/inputs/slider.scss";
 @import "/src/app/style/inputs/color-picker.scss";
@@ -7,31 +6,31 @@
 @import "/src/app/style/inputs/uploader.scss";
 
 * {
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
 
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    padding: 2em;
-    font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
-  }
+  padding: 2em;
+  font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+}
 
-  div{
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-    
-
-  }
+div {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
 
 
-
-
-  
+}
 
 
 
+.sammy-nowrap-2 {
+text-overflow: ellipsis ellipsis;
+hyphens:auto;
+word-wrap:break-word;
+}
