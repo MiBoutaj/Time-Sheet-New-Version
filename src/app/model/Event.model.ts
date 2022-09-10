@@ -1,9 +1,9 @@
 export class Event {
 
-    Id: number;
-    Subject: string;
-    StartTime: Date;
-    EndTime: Date;
+    id: number;
+    title: string;
+    start: Date;
+    end: Date;
 
 
 }

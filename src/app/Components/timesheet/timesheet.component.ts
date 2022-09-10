@@ -4,8 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, AbstractControl } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Employee } from 'src/app/model/Employee.model';
+import { Task } from 'src/app/model/Task.model';
 import { TimeSheet } from 'src/app/model/TimeSheet.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { TaskService } from 'src/app/services/task.service';
 import { TimesheetService } from 'src/app/services/timesheet.service';
 
 @Component({
@@ -15,17 +17,21 @@ import { TimesheetService } from 'src/app/services/timesheet.service';
   providers: [MessageService,TimesheetService]
 })
 export class TimesheetComponent implements OnInit {
+
+
   reactForm: FormGroup;
   timesheets: TimeSheet[] | any;
   timesheet : TimeSheet = new TimeSheet();
   employee = new Employee() ;
+  
   
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private timesheetService : TimesheetService,
-    public authService : AuthService
+    public authService : AuthService,
+    private service: TaskService
   ) {
 
     this.timesheet.date =new Date();
@@ -38,7 +44,8 @@ export class TimesheetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timesheetService.getAllTimeSheet().subscribe(data=> this.timesheets = data)
+    this.timesheetService.getAllTimeSheet().subscribe(data=> this.timesheets = data);
+ 
   }
 
   get check() { return this.reactForm.get('check'); }

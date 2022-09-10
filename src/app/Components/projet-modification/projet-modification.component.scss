@@ -32,8 +32,6 @@ body {
   div{
     font-family: "Montserrat", sans-serif;
     font-size: 13px;
-    
-
   }
 
 
@@ -90,35 +88,31 @@ body {
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.projet-todo {
+    &.projet-ToDo {
         background: #FFCDD2;
         color: #C63737;
     }
 
-    &.projet-inprogress {
+    &.projet-InProgress {
         background: #FEEDAF;
-        color: #C63737;
+        color: #f6c103;
     }
 
-    &.projet-done {
+    &.projet-Done {
         background: #B3E5FC;
         color: #3767c6;
     }
-
-}
-
-.true-icon{
-    &.pi-check-circle{
+    &.projet-true {
+        background: #bcf7bc;
         color: #017001;
     }
+
+    &.projet-false {
+        background: #f08c8c;
+        color: #c30d0d;
+    }
 }
 
-.false-icon{
-    &.pi-times-circle{
-        color: #a81d02;
-    }
-    
-}
 
 .ui-icon {
     width: 19px !important;

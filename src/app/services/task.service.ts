@@ -43,9 +43,8 @@ export class TaskService extends Subject<DataStateChangeEventArgs> {
   }
 
 
-  updateCard(state: DataSourceChangedEventArgs): Observable<any> {
-    console.log(state.changedRecords[0])
-    return this.http.put(this.baseUrl + "/editTaskForEmplyee/", state.changedRecords[0]);
+  updateCard(task : Task): Observable<Task> {
+    return this.http.put<Task>(this.baseUrl + "/editTaskForEmplyee/", task);
 }
 
 public execute(state: any): void {

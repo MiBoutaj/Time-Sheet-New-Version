@@ -1,3 +1,5 @@
+
+
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <p-toast position="top-right"></p-toast>
 <div class="container-fluid page">
@@ -43,10 +45,11 @@
                             <div class="row card-layout" >
                                 <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6" style="margin-top: 20px;" *ngFor="let project of projectList">
                                     <div tabindex="0" class="e-card" id="basic_card">
+                                        <div class="ribbon"><span [class]="'ribbonCard projet-' + project.status" >{{project.status}}</span></div>
                                         <div class="e-card-header">
                                             <div class="e-card-header-caption">
                                                 <div class="e-card-header-title">{{project.name}}</div>
-                                                <div class="e-card-sub-title">{{project.client}} | {{project.duration}} </div>
+                                                <div class="e-card-sub-title">{{project.client}} | {{project.duration}} day </div>
                                             </div>
                                         </div>
                                         <div class="e-card-content" style="height: 100px;">
@@ -134,18 +137,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="e-float-input">
-                        <input id="check" type="number" formControlName="check" [(ngModel)]="projectDTO.duration">
-                        <span class="e-float-line"></span>
-                        <label for="check" class="e-float-text">Duration</label>
-                    </div>
-                    <div *ngIf="check.errors">
-                        <div *ngIf="check.errors.required && check.touched" class="e-error">
-                            This field is required.
-                        </div>
-                    </div>
-                </div>
 
                 <!-- <div class="form-group">
                 <div class="col-lg-9  content-wrapper" >

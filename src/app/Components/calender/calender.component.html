@@ -1,25 +1,21 @@
-
 <div class="container-fluid page">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.print.css" media="print">
+  <p-toolbar>
+    <ng-template pTemplate="left">
+        <h4>Calender</h4>
+    </ng-template>
 
+    <ng-template pTemplate="right">
 
-    <p-toolbar>
-        <ng-template pTemplate="left">
-            <h4>Calender</h4>
-        </ng-template>
+    </ng-template>
+</p-toolbar>
 
-        <ng-template pTemplate="right">
-
-        </ng-template>
-    </p-toolbar>
-
-    <div class="card" style="margin-top: 10px;">
-        <div class="card-body">
-            <ejs-schedule  #scheduleObj 
-            [eventSettings]="eventData" 
-            currentView="Month" readonly="true"
-            >
-        </ejs-schedule>
-        </div>
-        
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-body">
+      <full-calendar
+        [options]="options"
+        style="font-family: Arial, sans-serif; font-size: 13px"
+      ></full-calendar>
     </div>
-    </div>
+  </div>
+</div>

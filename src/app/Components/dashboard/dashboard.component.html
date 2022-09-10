@@ -1,74 +1,125 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <div class="container-fluid page">
-  <h1>Dashboard</h1>
-  <div class="card">
-    <div class="card-body">
+  <p-toolbar>
+    <ng-template pTemplate="left">
+        <h4>Dashboard</h4>
+    </ng-template>
 
+    <ng-template pTemplate="right">
+
+    </ng-template>
+</p-toolbar>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-body">
       <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-               <div class="col">
-             <div class="card radius-10 border-start border-0 border-3 border-info">
+          <div class="col">
+            <div
+              class="card1 radius-10 border-start border-0 border-3 border-success"
+            >
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div>
-                    <p class="mb-0 text-secondary">Total Orders</p>
-                    <h4 class="my-1 text-info">4805</h4>
-                    <p class="mb-0 font-13">+2.5% from last week</p>
+                    <p class="mb-0 text-secondary">Total Employee</p>
+                    <h4 class="my-1 text-success">{{te}}</h4>
                   </div>
-                  <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="fa fa-shopping-cart"></i>
+                  <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-black ms-auto">
+                    <img  src="./assets/user.png" alt="" class="user-image mr-1 p-2" />
                   </div>
                 </div>
               </div>
-             </div>
-             </div>
-             <div class="col">
-            <div class="card radius-10 border-start border-0 border-3 border-danger">
-               <div class="card-body">
-                 <div class="d-flex align-items-center">
-                   <div>
-                     <p class="mb-0 text-secondary">Total Revenue</p>
-                     <h4 class="my-1 text-danger">$84,245</h4>
-                     <p class="mb-0 font-13">+5.4% from last week</p>
-                   </div>
-                   <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class="fa fa-dollar"></i>
-                   </div>
-                 </div>
-               </div>
             </div>
+          </div>
+
+          <div class="col">
+            <div
+              class="card1 radius-10 border-start border-0 border-3 border-warning "
+            >
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div>
+                    <p class="mb-0 text-secondary">Total Admin</p>
+                    <h4 class="my-1 text-warning">{{tm}}</h4>
+                  </div>
+
+                  <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-black ms-auto">
+                    <img  src="./assets/user.png" alt="" class="user-image mr-1 p-2" />
+                  </div>
+
+
+                </div>
+              </div>
             </div>
-            <div class="col">
-            <div class="card radius-10 border-start border-0 border-3 border-success">
-               <div class="card-body">
-                 <div class="d-flex align-items-center">
-                   <div>
-                     <p class="mb-0 text-secondary">Bounce Rate</p>
-                     <h4 class="my-1 text-success">34.6%</h4>
-                     <p class="mb-0 font-13">-4.5% from last week</p>
-                   </div>
-                   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class="fa fa-bar-chart"></i>
-                   </div>
-                 </div>
-               </div>
+          </div>
+
+          <div class="col">
+            <div
+              class="card1 radius-10 border-start border-0 border-3 border-info"
+            >
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div>
+                    <p class="mb-0 text-secondary">Total Project</p>
+                    <h4 class="my-1 text-info">{{tp}}</h4>
+                  </div>
+
+                  <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-black ms-auto">
+                    <img  src="./assets/project.png" alt="" class="user-image mr-1 p-2" />
+                  </div>
+                  
+                </div>
+              </div>
             </div>
-            </div>
-            <div class="col">
-            <div class="card radius-10 border-start border-0 border-3 border-warning">
-               <div class="card-body">
-                 <div class="d-flex align-items-center">
-                   <div>
-                     <p class="mb-0 text-secondary">Total Customers</p>
-                     <h4 class="my-1 text-warning">8.4K</h4>
-                     <p class="mb-0 font-13">+8.4% from last week</p>
-                   </div>
-                   <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class="fa fa-users"></i>
-                   </div>
-                 </div>
-               </div>
-            </div>
-            </div> 
+          </div>
+        </div>
+      </div>
+
+      <div class="row widgets">
+
+      <div class="col-12 xl:col-8">
+        <div class="card">
+          <div class="card-body">
+            <h5>Project Overview</h5>
+            <p-chart
+              type="bar"
+              [data]="basicData"
+              [options]="basicOptions"
+            ></p-chart>
           </div>
         </div>
 
+
+        <div class="card">
+          <div class="card-body">
+            <h5>Project Details</h5>
+            <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="col-12 xl:col-3">
+        <div class="card">
+          <div class="card-body">
+            <h5>Total Projects by Status</h5>
+            <p-chart type="pie" [data]="data" [options]="chartOptions"  [style]="{'width': '70%'}"></p-chart>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5>Task done to verified</h5>
+            <div class="text-center" style="font-size: 92px; color: #fd3550;">
+            {{dnv}}
+          </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
 
 
 

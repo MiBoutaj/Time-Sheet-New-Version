@@ -8,5 +8,6 @@ export class Project {
     duration: number;
     client: string;
     taskList: Task[];
+    status:string;
 
 }

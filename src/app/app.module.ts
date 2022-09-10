@@ -56,7 +56,6 @@ import {SplitterModule} from 'primeng/splitter';
 
 import { KanbanModule } from '@syncfusion/ej2-angular-kanban';
 import { ForbiddenComponent } from './Forbidden/forbidden/forbidden.component';
-import { AddProjetComponent } from './Components/add-projet/add-projet.component';
 import { ProjetModificationComponent } from './Components/projet-modification/projet-modification.component';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
@@ -68,6 +67,7 @@ import { KanbanAllModule } from '@syncfusion/ej2-angular-kanban';
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { EventModificationComponent } from './Components/event-modification/event-modification.component';
 import { UserModificationComponent } from './Components/user-modification/user-modification.component';
+import { FooterComponent } from './Components/footer/footer.component';
 
 
 
@@ -91,10 +91,10 @@ FullCalendarModule.registerPlugins([
     GestionProjetComponent,
     ProjetTacheComponent,
     ForbiddenComponent,
-    AddProjetComponent,
     ProjetModificationComponent,
     EventModificationComponent,
     UserModificationComponent,
+    FooterComponent,
 
 
 

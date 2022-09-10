@@ -20,13 +20,16 @@ body {
 body {
     padding: 2em;
     font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+ 
   }
 
   div{
     font-family: "Montserrat", sans-serif;
     font-size: 13px;
-    
+  }
 
+  div .card{
+    margin-bottom: 40px;
   }
   
 

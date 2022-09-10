@@ -6,13 +6,15 @@ import { Task } from 'src/app/model/Task.model';
 import { TaskChart } from 'src/app/model/TaskChart.model';
 import { ProjectServiceService } from 'src/app/services/project-service.service';
 import { TaskService } from 'src/app/services/task.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 
 @Component({
   selector: 'app-projet-tache',
   templateUrl: './projet-tache.component.html',
-  styleUrls: ['./projet-tache.component.scss']
+  styleUrls: ['./projet-tache.component.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class ProjetTacheComponent implements OnInit {
 
@@ -34,7 +36,9 @@ export class ProjetTacheComponent implements OnInit {
     private projectService: ProjectServiceService,
     private router: ActivatedRoute,
     private taskService: TaskService,
-    private routre: Router
+    private routre: Router,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ) {
 
 
@@ -105,9 +109,23 @@ export class ProjetTacheComponent implements OnInit {
 
 
   deletProject(id: number) {
-    this.projectService.deleteProjectById(id);
-    this.ngOnInit();
-    this.routre.navigate(['/gestion-projet']);
+
+
+
+
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + this.project.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.projectService.deleteProjectById(id);
+        this.ngOnInit();
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Project Deleted', life: 3000 });
+        this.routre.navigate(['/dashboard']).then(() => {
+          this.routre.navigate(['/gestion-projet']);
+        });;
+      }
+    });
   }
 
 }

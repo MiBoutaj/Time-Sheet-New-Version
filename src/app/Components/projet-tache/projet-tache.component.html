@@ -10,6 +10,7 @@
     </p-toolbar>
 
     <div class="card" style="margin-top: 10px;">
+        <p-toast></p-toast>
         <div class="card-body">
 
             <p-splitter [style]="{'height': '300px'}" [panelSizes]="[15,85]" [minSizes]="[10,0]" styleClass="mb-5">
@@ -130,10 +131,7 @@
                                 {{task.duration}}
                             </td>
                             <td class="text-center">
-
                                 <span [class]="'projet-badge projet-' + task.verified">{{task.verified}}</span>
-                                <!-- <i class="pi"
-                                [ngClass]="{'true-icon pi-check-circle': task.verified, 'false-icon pi-times-circle': !task.verified}"></i> -->
                             </td>
                         </tr>
                     </ng-template>
@@ -142,3 +140,4 @@
         </div>
     </div>
 </div>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
